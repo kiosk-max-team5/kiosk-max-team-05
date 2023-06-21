@@ -34,13 +34,11 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x /be/kiosk/gradlew
-      shell: bash
-    
     - name: Build with Gradle
-      run: ./be/kiosk/gradlew build
-      shell: bash
+        run: |
+          cd /be/kiosk/
+          chmod +x gradlew
+          ./gradlew clean build -x test
 
     # (4) AWS 인증 (IAM 사용자 Access Key, Secret Key 활용)
     - name: Configure AWS credentials
