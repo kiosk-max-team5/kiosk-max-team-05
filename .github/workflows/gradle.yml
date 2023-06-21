@@ -50,12 +50,6 @@ jobs:
       - name: Make zip file
         run: zip -r ./kiosk-max-team-05-build.zip ./deploy/
 
-      - name: Install AWS CLI
-        run: |
-          curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
-
       - name: Upload ZIP to S3
         run: |
           aws s3 cp ./kiosk-max-team-05-build.zip s3://${{ env.S3_BUCKET_NAME }}/deploy/kiosk-max-team-05-build.zip
