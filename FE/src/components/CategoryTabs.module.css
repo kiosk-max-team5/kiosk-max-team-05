@@ -1,0 +1,26 @@
+.CategoryTabs {
+  display: flex;
+  height: 150px;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+.Tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid black;
+  width: 300px;
+  height: 100%;
+  font-size: 35px;
+  font-weight: 200;
+  flex-shrink: 0;
+}
+
+.LastTab {
+  border-right: none;
+}
+
+.ActiveTab {
+  font-weight: 400;
+}
