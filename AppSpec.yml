@@ -30,16 +30,16 @@ permissions:
 
 hooks:
   # 배포 이후 실행할 scripts를 찾는다.
-  files:
-    - source: /
-  destination: /home/ubuntu/kiosk
-  commands:
-    - mkdir -p /home/ubuntu/kiosk
+#  files:
+#    - source: /
+#  destination: /home/ubuntu/
+#  commands:
+#    - mkdir -p /home/ubuntu/kiosk
   AfterInstall:
-    location: /home/ubuntu/kiosk/stop.sh
-    timeout: 60
-    runas: ubuntu
+    - location: stop.sh
+      timeout: 60
+      runas: ubuntu
   ApplicationStart:
-    - location: /home/ubuntu/kiosk/start.sh
+    - location: start.sh
       timeout: 60
       runas: ubuntu
