@@ -12,6 +12,10 @@ type ModalContextType = {
   setCartMenuList: (menuList: CartMenus[]) => void;
   orderCount: number;
   setOrderCount: (count: number) => void;
+  isPaymentModalOpen: boolean;
+  setIsPaymentModalOpen: (isOpen: boolean) => void;
+  isDimOpen: boolean;
+  setIsDimOpen: (isOpen: boolean) => void;
 };
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -33,6 +37,9 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [isOpenCart, setIsOpenCart] = useState(false);
   const [cartMenuList, setCartMenuList] = useState<CartMenus[]>([]); // [{ imgUrl: "", name: "", price: 0 }
   const [orderCount, setOrderCount] = useState(1);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isDimOpen, setIsDimOpen] = useState(false);
+
   const value: ModalContextType = {
     isOrderModalOpen,
     setIsOrderModalOpen,
@@ -44,6 +51,10 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setCartMenuList,
     orderCount,
     setOrderCount,
+    isPaymentModalOpen,
+    setIsPaymentModalOpen,
+    isDimOpen,
+    setIsDimOpen,
   };
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;

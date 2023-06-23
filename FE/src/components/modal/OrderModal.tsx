@@ -17,10 +17,12 @@ export function OrderModal() {
     setIsOpenCart,
     cartMenuList,
     setCartMenuList,
+    setIsDimOpen,
   } = contextValue;
 
   const handleCloseButtonClick = () => {
     setIsOrderModalOpen(false);
+    setIsDimOpen(false);
   };
   const handleAddToCartButtonClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setIsOpenCart(true);
@@ -31,6 +33,7 @@ export function OrderModal() {
     }
 
     setIsOrderModalOpen(false);
+    setIsDimOpen(false);
   };
 
   return isOrderModalOpen ? (

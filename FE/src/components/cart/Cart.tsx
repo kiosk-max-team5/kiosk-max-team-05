@@ -7,11 +7,17 @@ export function Cart() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { isOpenCart, setIsOpenCart, cartMenuList, setCartMenuList } = contextValue;
+  const { setIsDimOpen, isOpenCart, setIsOpenCart, setIsPaymentModalOpen, cartMenuList, setCartMenuList } =
+    contextValue;
 
   const handleClickCancelButton = () => {
     setCartMenuList([]);
     setIsOpenCart(false);
+  };
+
+  const handleClickPaymentButton = () => {
+    setIsPaymentModalOpen(true);
+    setIsDimOpen(true);
   };
 
   return isOpenCart ? (
@@ -25,7 +31,9 @@ export function Cart() {
         <div className={styles.CancelButton} onClick={handleClickCancelButton}>
           전체취소
         </div>
-        <div className={styles.PaymentButton}>결제하기</div>
+        <div className={styles.PaymentButton} onClick={handleClickPaymentButton}>
+          결제하기
+        </div>
       </div>
     </div>
   ) : null;
@@ -47,7 +55,7 @@ function Menu({
   };
 
   const handleRemoveFromCart = (targetIndex: number) => {
-    if (!setCartMenuList || !cartMenuList) return; // 필요한 상태가 제공되지 않았다면 함수를 종료합니다.
+    if (!setCartMenuList || !cartMenuList) return;
 
     const updatedCart = cartMenuList.filter((_, idx) => idx !== targetIndex);
 
