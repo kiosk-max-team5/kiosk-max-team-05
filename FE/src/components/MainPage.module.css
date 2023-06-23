@@ -1,8 +1,12 @@
 .MainPage {
+  display: flex;
+  flex-direction: column;
+
   margin: 0 auto;
   border: 3px solid black;
   width: 1000px;
   height: 1500px;
+  overflow: hidden;
 }
 
 .MainImage {
