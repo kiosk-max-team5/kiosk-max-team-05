@@ -7,7 +7,12 @@ export function Cart() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { isOpenCart, cartMenuList, setCartMenuList } = contextValue;
+  const { isOpenCart, setIsOpenCart, cartMenuList, setCartMenuList } = contextValue;
+
+  const handleClickCancelButton = () => {
+    setCartMenuList([]);
+    setIsOpenCart(false);
+  };
 
   return isOpenCart ? (
     <div className={styles.Cart}>
@@ -17,7 +22,9 @@ export function Cart() {
         ))}
       </div>
       <div className={styles.ButtonContainer}>
-        <div className={styles.CancelButton}>전체취소</div>
+        <div className={styles.CancelButton} onClick={handleClickCancelButton}>
+          전체취소
+        </div>
         <div className={styles.PaymentButton}>결제하기</div>
       </div>
     </div>
