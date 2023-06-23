@@ -1,0 +1,194 @@
+.OrderModal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  padding: 50px;
+  top: -1200px;
+  width: 700px;
+  height: 450px;
+  background-color: white;
+  border: 2px solid rgb(213, 213, 213);
+  border-radius: 30px;
+  z-index: 1;
+}
+
+.Upper {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.Lower {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100px;
+}
+
+.Menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 22px;
+  font-weight: 100;
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgb(213, 213, 213);
+  border-radius: 20px;
+  background-color: white;
+
+  transition: transform 1s;
+}
+.Menu.animating {
+  transform: translateY(216px);
+}
+
+.Menu img {
+  width: 150px;
+  height: 150px;
+}
+
+.MenuName {
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.MenuPrice {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.Options {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  background-color: white;
+}
+
+.OptionButtons {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.Buttons {
+  position: relative;
+  display: flex;
+  gap: 20px;
+}
+
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  border: 2px solid rgb(213, 213, 213);
+
+  border-radius: 20px;
+  color: white;
+}
+
+.SelectedButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  border: 4px solid rgb(0, 180, 42);
+  /* border: 4px solid rgb(0, 243, 211); */
+
+  border-radius: 20px;
+  color: white;
+}
+
+.ButtonText {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.QuantityControl {
+  display: flex;
+  justify-content: space-evenly;
+
+  align-items: center;
+  gap: 10px;
+  width: 200px;
+  height: 60px;
+
+  background-color: white;
+  font-size: 30px;
+}
+
+.Minus,
+.Plus {
+  display: flex;
+  font-size: 50px;
+  font-weight: 100;
+}
+
+.Quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 100;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.CloseButton {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid black;
+  left: 770px;
+  top: -20px;
+  background-color: white;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.AddToCartButton {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 100;
+  border-radius: 20px;
+  border: 2px solid rgb(213, 213, 213);
+  background-color: white;
+  font-size: 25px;
+  font-weight: 700;
+  color: white;
+  background-color: #1b3c35;
+}
