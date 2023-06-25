@@ -76,7 +76,6 @@ jobs:
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
             --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=deploy/was/kiosk-max-team-05-build.zip,bundleType=zip
-            --ignore-application-stop-failures
         env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
