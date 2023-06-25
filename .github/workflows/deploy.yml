@@ -109,10 +109,7 @@ jobs:
         run: |
           cp -r ./FE/build/ ./deploy/가
           cp ./appspec-web.yml ./deploy/appspec-web.yml
-          cp ./scripts/start_web.sh ./deploy/
-          cp ./scripts/stop_web.sh ./deploy/
-          cp ./scripts/install_dependencies.sh ./deploy/
-          cp ./scripts/copy_build_files.sh ./deploy/
+          cp ./scripts/deploy-web.sh ./deploy/
 
       - name: Grant execute permissions
         run: |
