@@ -105,6 +105,9 @@ jobs:
         run: |
           mkdir -p deploy
 
+      - name: Grant execute permissions
+        run: chmod +x ./scripts/install_dependencies.sh
+
       - name: Copy build, appspec-web.yml, stop_was.sh and start_was.sh
         run: |
           cp -r ./FE/build/ ./deploy/
