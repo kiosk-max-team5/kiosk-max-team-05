@@ -107,14 +107,9 @@ jobs:
 
       - name: Copy build, appspec-web.yml, stop_was.sh and start_was.sh
         run: |
-          cp -r ./FE/build/ ./deploy/가
+          cp -r ./FE/build/ ./deploy/
           cp ./appspec-web.yml ./deploy/appspec-web.yml
           cp ./scripts/deploy-web.sh ./deploy/
-
-      - name: Grant execute permissions
-        run: |
-          chmod +x ./scripts/install_dependencies.sh
-          chmod +x ./scripts/copy_build_files.sh
 
       - name: Make zip File
         run: zip -r ./react-build.zip ./deploy/
