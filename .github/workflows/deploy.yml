@@ -105,9 +105,6 @@ jobs:
         run: |
           mkdir -p deploy
 
-      - name: Grant execute permissions
-        run: chmod +x ./scripts/install_dependencies.sh
-
       - name: Copy build, appspec-web.yml, stop_was.sh and start_was.sh
         run: |
           cp -r ./FE/build/ ./deploy/
@@ -115,6 +112,12 @@ jobs:
           cp ./scripts/start_web.sh ./deploy/
           cp ./scripts/stop_web.sh ./deploy/
           cp ./scripts/install_dependencies.sh ./deploy/
+          cp ./scripts/copy_build_files.sh ./deploy/
+
+      - name: Grant execute permissions
+        run: |
+          chmod +x ./scripts/install_dependencies.sh
+          chmod +x ./scripts/copy_build_files.sh
 
       - name: Make zip File
         run: zip -r ./react-build.zip ./deploy/
