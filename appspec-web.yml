@@ -1,0 +1,28 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /var/www/app
+    overwrite: yes
+
+hooks:
+  ApplicationStop:
+    - location: stop_web.sh
+      timeout: 60
+      runas: ubuntu
+
+  BeforeInstall:
+    - location: install_dependencies.sh
+      timeout: 60
+      runas: ubuntu
+
+  AfterInstall:
+    - location: copy_build_files.sh
+      timeout: 60
+      runas: ubuntu
+
+  ApplicationStart:
+    - location: start_web.sh
+      timeout: 60
+      runas: ubuntu
