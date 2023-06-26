@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   was-build-and-deploy:
-    name: Deploy
+    name: BE Deploy
     runs-on: ubuntu-latest
     environment: production
 
@@ -78,7 +78,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
   web-build-and-deploy:
-    name: Deploy
+    name: FE Deploy
+    needs: was-build-and-deploy
     runs-on: ubuntu-latest
     environment: production
 
