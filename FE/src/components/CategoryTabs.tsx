@@ -1,16 +1,24 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./CategoryTabs.module.css";
 
-export function CategoryTabs({ categories, onClick }: { categories: any[]; onClick: (index: number) => void }) {
-  const [activeTab, setActiveTab] = useState(-1);
+export function CategoryTabs({
+  categories,
+  onClick,
+  activeTab,
+}: {
+  categories: any[];
+  onClick: (index: number) => void;
+  activeTab: number;
+}) {
+  // const [activeTab, setActiveTab] = useState(-1);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const handleTabClick = (index: number) => {
-    onClick(index);
-    setActiveTab(index);
-  };
+  // const handleTabClick = (index: number) => {
+  //   onClick(index);
+  //   setActiveTab(index);
+  // };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
@@ -42,8 +50,8 @@ export function CategoryTabs({ categories, onClick }: { categories: any[]; onCli
           name={category}
           isLastTab={index === categories.length - 1}
           isActive={index === activeTab}
-          onClick={() => handleTabClick(index)}
-          // onClick={() => onClick(index)}
+          // onClick={() => handleTabClick(index)}
+          onClick={() => onClick(index)}
         />
       ))}
     </div>

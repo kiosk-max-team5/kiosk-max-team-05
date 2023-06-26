@@ -7,7 +7,22 @@ export function Dim() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { isDimOpen } = contextValue;
+  const { isDimOpen, setIsDimOpen, isOrderModalOpen, setIsOrderModalOpen, isPaymentModalOpen, setIsPaymentModalOpen } =
+    contextValue;
 
-  return isDimOpen ? <div className={styles.Dim}></div> : null;
+  const handleBackgroundClick = () => {
+    setIsDimOpen(false);
+    switch (true) {
+      case isOrderModalOpen:
+        setIsOrderModalOpen(false);
+        break;
+      case isPaymentModalOpen:
+        setIsPaymentModalOpen(false);
+        break;
+      default:
+        break;
+    }
+  };
+
+  return isDimOpen ? <div className={styles.Dim} onClick={handleBackgroundClick}></div> : null;
 }

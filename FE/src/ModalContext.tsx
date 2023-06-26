@@ -16,6 +16,12 @@ type ModalContextType = {
   setIsPaymentModalOpen: (isOpen: boolean) => void;
   isDimOpen: boolean;
   setIsDimOpen: (isOpen: boolean) => void;
+  isCashPaymentOpen: boolean;
+  setIsCashPaymentOpen: (isOpen: boolean) => void;
+  isCardLoadingOpen: boolean;
+  setIsCardLoadingOpen: (isOpen: boolean) => void;
+  isReceiptOpen: boolean;
+  setIsReceiptOpen: (isOpen: boolean) => void;
 };
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -39,6 +45,9 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [orderCount, setOrderCount] = useState(1);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isDimOpen, setIsDimOpen] = useState(false);
+  const [isCashPaymentOpen, setIsCashPaymentOpen] = useState(false);
+  const [isCardLoadingOpen, setIsCardLoadingOpen] = useState(false);
+  const [isReceiptOpen, setIsReceiptOpen] = useState(false);
 
   const value: ModalContextType = {
     isOrderModalOpen,
@@ -55,6 +64,12 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setIsPaymentModalOpen,
     isDimOpen,
     setIsDimOpen,
+    isCashPaymentOpen,
+    setIsCashPaymentOpen,
+    isCardLoadingOpen,
+    setIsCardLoadingOpen,
+    isReceiptOpen,
+    setIsReceiptOpen,
   };
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
