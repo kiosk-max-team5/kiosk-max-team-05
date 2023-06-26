@@ -1,17 +1,17 @@
 .OrderModal {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 25px;
   padding: 50px;
-  top: -1200px;
+  top: 350px;
   width: 700px;
   height: 450px;
   background-color: white;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 30px;
-  z-index: 1;
+  z-index: 9999;
 }
 
 .Upper {
