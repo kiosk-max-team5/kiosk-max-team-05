@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-S3_BUCKET="s3://kiosk-team5-web/deploy/web"
+S3_BUCKET="s3://kiosk-team5/deploy/app"
 PROJECT_ROOT="/home/ubuntu/web"
 BUILD_FILE="react-build.zip"
 

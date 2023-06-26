@@ -9,11 +9,7 @@ env:
   AWS_REGION: ap-northeast-2
   S3_BUCKET_NAME: kiosk-team5
   CODE_DEPLOY_APPLICATION_NAME: my-codedeploy-app
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: my-codedeploy-deployment-group-was
-
-  S3_BUCKET_NAME_WEB: kiosk-team5-web
-  CODE_DEPLOY_APP_NAME_WEB: my-codedeploy-web
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME_WEB: my-codedeploy-deployment-group-web
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: my-codedeploy-deployment-group
 
 permissions:
   contents: read
@@ -42,17 +38,17 @@ jobs:
 
       - name: Create temporary directory
         run: |
-          mkdir -p deploy
+          mkdir -p deploy/was
 
       - name: Copy Jar, appspec-app.yml, start_was.sh and stop_was.sh
         run: |
-          cp ./be/kiosk/build/libs/*.jar ./deploy/
-          cp ./appspec-app.yml ./deploy/appspec-app.yml
-          cp ./scripts/start_was.sh ./deploy/
-          cp ./scripts/stop_was.sh ./deploy/
+          cp ./be/kiosk/build/libs/*.jar ./deploy/was/
+          cp ./appspec-app.yml ./deploy/was/appspec-app.yml
+          cp ./scripts/start_was.sh ./deploy/was/
+          cp ./scripts/stop_was.sh ./deploy/was/
 
       - name: Make zip file
-        run: zip -r ./kiosk-max-team-05-build.zip ./deploy/
+        run: zip -r ./kiosk-max-team-05-build.zip ./deploy/was/
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -103,16 +99,16 @@ jobs:
 
       - name: Create temporary directory
         run: |
-          mkdir -p deploy
+          mkdir -p deploy/web
 
       - name: Copy build, appspec-web.yml, stop_was.sh and start_was.sh
         run: |
-          cp -r ./FE/build/ ./deploy/
-          cp ./appspec-web.yml ./deploy/appspec-web.yml
-          cp ./scripts/deploy-web.sh ./deploy/
+          cp -r ./FE/build/ ./deploy/web/
+          cp ./appspec-web.yml ./deploy/web/appspec-web.yml
+          cp ./scripts/deploy-web.sh ./deploy/web/
 
       - name: Make zip File
-        run: zip -r ./react-build.zip ./deploy/
+        run: zip -r ./react-build.zip ./deploy/web/
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -123,7 +119,7 @@ jobs:
 
       - name: Upload zip to S3
         run: |
-          aws s3 cp ./react-build.zip s3://${{ env.S3_BUCKET_NAME_WEB }}/deploy/web/react-build.zip
+          aws s3 cp ./react-build.zip s3://${{ env.S3_BUCKET_NAME }}/deploy/web/react-build.zip
         env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -132,10 +128,10 @@ jobs:
       - name: Deploy to CodeDeploy
         run: |
           aws deploy create-deployment \
-            --application-name ${{ env.CODE_DEPLOY_APP_NAME_WEB }} \
+            --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME_WEB }} \
-            --s3-location bucket=${{ env.S3_BUCKET_NAME_WEB }},key=deploy/web/react-build.zip,bundleType=zip
+            --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+            --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=deploy/web/react-build.zip,bundleType=zip
         env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
