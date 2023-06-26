@@ -44,7 +44,7 @@ jobs:
 
       - name: Copy Jar, appspec-app.yml, start_was.sh and stop_was.sh
         run: |
-          cp ./build/libs/*.jar ./deploy/was/
+          cp ./be/kiosk/build/libs/*.jar ./deploy/was/
           cp ./appspec-app.yml ./deploy/was/appspec-app.yml
           cp ./scripts/start_was.sh ./deploy/was/
           cp ./scripts/stop_was.sh ./deploy/was/
