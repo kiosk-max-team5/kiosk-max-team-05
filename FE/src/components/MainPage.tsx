@@ -7,6 +7,8 @@ import ModalContext from "../ModalContext";
 
 export function MainPage() {
   const [menuData, setMenuData] = useState([]);
+  const [activeTab, setActiveTab] = useState(-1); // add this state
+
   const contextValue = useContext(ModalContext);
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
@@ -24,7 +26,12 @@ export function MainPage() {
       setAnimationClass("fade-exit");
 
       setCurrentCategory(index);
+      setActiveTab(index);
     }, 450);
+  };
+
+  const handleClickMainImage = () => {
+    handleTabClick(0);
   };
 
   useEffect(() => {
@@ -48,11 +55,11 @@ export function MainPage() {
 
   return (
     <div className={styles.MainPage}>
-      <CategoryTabs categories={categories} onClick={handleTabClick} />
+      <CategoryTabs categories={categories} onClick={handleTabClick} activeTab={activeTab} />
       {currentCategory >= 0 ? (
         <MenuArea animationClass={animationClass} menus={menuData} />
       ) : (
-        <div className={styles.MainImage}></div>
+        <div className={styles.MainImage} onClick={handleClickMainImage}></div>
       )}
       <Cart />
     </div>

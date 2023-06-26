@@ -10,8 +10,9 @@
 }
 
 .MainImage {
-  width: 100%;
-  height: 1000px;
+  position: absolute;
+  width: 1000px;
+  height: 1500px;
   background-image: url("https://www.cleaneatingkitchen.com/wp-content/uploads/2023/01/Starbucks-Strongest-Coffee-Vertical-Hero-3.jpg");
   background-size: 100% auto;
   background-repeat: no-repeat;
