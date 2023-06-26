@@ -10,15 +10,9 @@ export function CategoryTabs({
   onClick: (index: number) => void;
   activeTab: number;
 }) {
-  // const [activeTab, setActiveTab] = useState(-1);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  // const handleTabClick = (index: number) => {
-  //   onClick(index);
-  //   setActiveTab(index);
-  // };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
@@ -50,7 +44,6 @@ export function CategoryTabs({
           name={category}
           isLastTab={index === categories.length - 1}
           isActive={index === activeTab}
-          // onClick={() => handleTabClick(index)}
           onClick={() => onClick(index)}
         />
       ))}

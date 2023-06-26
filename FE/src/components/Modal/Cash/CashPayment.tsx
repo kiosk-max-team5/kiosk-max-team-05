@@ -1,18 +1,15 @@
 import { useContext, useState } from "react";
 import styles from "./CashPayment.module.css";
-import ModalContext from "../../ModalContext";
+import ModalContext from "../../../contexts/ModalContext";
 
 export function CashPayment() {
-  const contextValue = useContext(ModalContext);
+  const contextValue = useContext(ModalContext)!;
   const [paidAmount, setPaidAmount] = useState(0);
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
 
   const orderAmount = 9000;
 
-  if (!contextValue) {
-    throw new Error("ModalContext is not provided");
-  }
-  const { setIsReceiptOpen, isCashPaymentOpen, setIsCashPaymentOpen,setIsDimOpen } = contextValue;
+  const { setModalState, setIsDimOpen, modalState } = contextValue;
 
   const handleClickPriceButton = (price: number) => {
     if (orderAmount < paidAmount + price) {
@@ -23,12 +20,10 @@ export function CashPayment() {
 
   const handleClickPaymentButton = () => {
     setIsDimOpen(false);
-    setIsCashPaymentOpen(false);
-    setIsPaymentComplete(false);
-    setIsReceiptOpen(true);
+    setModalState("receipt");
   };
 
-  return isCashPaymentOpen ? (
+  return modalState === "cashPayment" ? (
     <div className={styles.CashPayment}>
       <div className={styles.ButtonContainer}>
         <div className={styles.PriceButton} onClick={() => handleClickPriceButton(1000)}>

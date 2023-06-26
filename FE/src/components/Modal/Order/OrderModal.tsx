@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import styles from "./OrderModal.module.css";
-import ModalContext from "../../ModalContext";
-import { Menus } from "../MenuArea";
+import ModalContext from "../../../contexts/ModalContext";
+import { Menus } from "../../MenuArea/MenuArea";
 
 export function OrderModal() {
   const contextValue = useContext(ModalContext);
@@ -9,11 +9,11 @@ export function OrderModal() {
     throw new Error("ModalContext is not provided");
   }
   const {
+    setModalState,
+    modalState,
     orderCount,
     setOrderCount,
     selectedMenu,
-    isOrderModalOpen,
-    setIsOrderModalOpen,
     setIsOpenCart,
     cartMenuList,
     setCartMenuList,
@@ -21,7 +21,7 @@ export function OrderModal() {
   } = contextValue;
 
   const handleCloseButtonClick = () => {
-    setIsOrderModalOpen(false);
+    setModalState(null);
     setIsDimOpen(false);
   };
   const handleAddToCartButtonClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -32,11 +32,11 @@ export function OrderModal() {
       setCartMenuList([...cartMenuList, updatedMenu]);
     }
 
-    setIsOrderModalOpen(false);
+    setModalState(null);
     setIsDimOpen(false);
   };
 
-  return isOrderModalOpen ? (
+  return modalState === "order" ? (
     <div className={styles.OrderModal}>
       <CloseButton onClick={handleCloseButtonClick} />
       <div className={styles.Upper}>

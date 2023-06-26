@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import ModalContext from "../ModalContext";
+
 import styles from "./MenuArea.module.css";
+import ModalContext from "../../contexts/ModalContext";
 
 export interface Menus {
   imgUrl: string;
@@ -19,15 +20,13 @@ export function MenuArea({ menus, animationClass }: { menus: Menus[]; animationC
 }
 
 function Menu({ menu, index }: { menu: Menus; index: number }) {
-  const contextValue = useContext(ModalContext);
+  const contextValue = useContext(ModalContext)!;
 
-  if (!contextValue) {
-    throw new Error("ModalContext is not provided");
-  }
-  const { setOrderCount, setIsOrderModalOpen, setSelectedMenu, setIsDimOpen } = contextValue;
+  const { setOrderCount, setModalState, setSelectedMenu, setIsDimOpen } = contextValue;
 
   const handleMenuClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setIsOrderModalOpen(true);
+    console.log('핸들메뉴');
+    setModalState("order");
     setOrderCount(1);
     setIsDimOpen(true);
 
@@ -37,12 +36,13 @@ function Menu({ menu, index }: { menu: Menus; index: number }) {
   };
 
   function getSelectedMenuInfo(target: HTMLElement): Menus {
-    const imgElem = target.firstElementChild;
-    const imgUrl = imgElem?.getAttribute("src")!;
-    const nameElem = imgElem?.nextElementSibling;
-    const name = imgElem?.nextElementSibling?.textContent!;
-    const priceElem = nameElem?.nextElementSibling;
-    const priceText = priceElem?.textContent!;
+    const imgElem = target.firstElementChild!;
+    const imgUrl = imgElem.getAttribute("src")!;
+    const nameElem = imgElem.nextElementSibling!;
+    const name = nameElem.textContent!;
+    // const name = imgElem?.nextElementSibling?.textContent!;
+    const priceElem = nameElem.nextElementSibling!;
+    const priceText = priceElem.textContent!;
     const price = parseInt(priceText, 10);
 
     return { imgUrl, name, price };

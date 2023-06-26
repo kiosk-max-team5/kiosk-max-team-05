@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Cart.module.css";
-import ModalContext, { CartMenus } from "../../ModalContext";
+import ModalContext, { CartMenus } from "../../contexts/ModalContext";
 
 export function Cart() {
   const time = useRef(10);
@@ -10,11 +10,10 @@ export function Cart() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { setIsDimOpen, isOpenCart, setIsOpenCart, setIsPaymentModalOpen, cartMenuList, setCartMenuList } =
-    contextValue;
+  const { setIsDimOpen, isOpenCart, setIsOpenCart, setModalState, cartMenuList, setCartMenuList } = contextValue;
 
   const handleClickPaymentButton = () => {
-    setIsPaymentModalOpen(true);
+    setModalState("payment");
     setIsDimOpen(true);
   };
 
