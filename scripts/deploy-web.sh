@@ -8,7 +8,7 @@ BUILD_FILE="react-build.zip"
 sudo rm -rf ${NGINX_ROOT}/*
 mkdir -p ${PROJECT_ROOT}
 aws s3 cp ${S3_BUCKET}/${BUILD_FILE} ${PROJECT_ROOT}/
-unzip ${PROJECT_ROOT}/${BUILD_FILE} -d ${NGINX_ROOT}
+unzip -o ${PROJECT_ROOT}/${BUILD_FILE} -d ${NGINX_ROOT}
 rm ${PROJECT_ROOT}/${BUILD_FILE}
 
 sudo service nginx restart
