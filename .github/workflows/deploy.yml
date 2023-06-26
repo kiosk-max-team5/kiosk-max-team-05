@@ -40,7 +40,7 @@ jobs:
 
       - name: Create temporary directory
         run: |
-          mkdir -p deploy_was
+          mkdir -p deploy/was
 
       - name: Copy Jar, appspec-app.yml, start_was.sh and stop_was.sh
         run: |
