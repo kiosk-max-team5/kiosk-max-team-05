@@ -9,7 +9,9 @@ env:
   AWS_REGION: ap-northeast-2
   S3_BUCKET_NAME: kiosk-team5
   CODE_DEPLOY_APPLICATION_NAME: my-codedeploy-app
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: my-codedeploy-deployment-group
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME_WAS: was-codedeploy-deployment-group
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME_WEB: web-codedeploy-deployment-group
+
 
 permissions:
   contents: read
@@ -70,7 +72,7 @@ jobs:
           aws deploy create-deployment \
             --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+            --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME_WAS }} \
             --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=deploy/was/kiosk-max-team-05-build.zip,bundleType=zip
         env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -131,7 +133,7 @@ jobs:
           aws deploy create-deployment \
             --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+            --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME_WEB }} \
             --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=deploy/web/react-build.zip,bundleType=zip
         env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
