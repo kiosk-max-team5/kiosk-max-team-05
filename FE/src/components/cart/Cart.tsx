@@ -1,8 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Cart.module.css";
 import ModalContext, { CartMenus } from "../../ModalContext";
 
 export function Cart() {
+  const time = useRef(10);
+  const [timeDisplay, setTimeDisplay] = useState(time.current);
+
   const contextValue = useContext(ModalContext);
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
@@ -10,15 +13,47 @@ export function Cart() {
   const { setIsDimOpen, isOpenCart, setIsOpenCart, setIsPaymentModalOpen, cartMenuList, setCartMenuList } =
     contextValue;
 
+  const handleClickPaymentButton = () => {
+    setIsPaymentModalOpen(true);
+    setIsDimOpen(true);
+  };
+
   const handleClickCancelButton = () => {
     setCartMenuList([]);
     setIsOpenCart(false);
   };
 
-  const handleClickPaymentButton = () => {
-    setIsPaymentModalOpen(true);
-    setIsDimOpen(true);
-  };
+  useEffect(() => {
+    if (cartMenuList.length === 0) {
+      setIsOpenCart(false);
+    }
+  }, [cartMenuList, setIsOpenCart]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout | number | undefined;
+
+    const tick = () => {
+      if (time.current <= 0) {
+        setCartMenuList([]);
+        setIsOpenCart(false);
+        time.current = 10;
+      } else {
+        time.current -= 1;
+      }
+      setTimeDisplay(time.current);
+    };
+
+    if (isOpenCart && time.current > 0) {
+      timer = setInterval(tick, 1000);
+    }
+
+    return () => clearInterval(timer as NodeJS.Timeout);
+  }, [setIsOpenCart, time, setCartMenuList, isOpenCart]);
+
+  useEffect(() => {
+    time.current = 10;
+    setTimeDisplay(time.current);
+  }, [cartMenuList]);
 
   return isOpenCart ? (
     <div className={styles.Cart}>
@@ -34,6 +69,7 @@ export function Cart() {
         <div className={styles.PaymentButton} onClick={handleClickPaymentButton}>
           결제하기
         </div>
+        <div className={styles.CountMessages}>{timeDisplay}초남음</div>
       </div>
     </div>
   ) : null;

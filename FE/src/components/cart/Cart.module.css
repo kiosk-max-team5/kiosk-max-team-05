@@ -140,3 +140,11 @@
 
   flex-shrink: 0;
 }
+
+.CountMessages {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+  color: black;
+}
