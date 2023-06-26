@@ -24,12 +24,13 @@ function Menu({ menu, index }: { menu: Menus; index: number }) {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { setOrderCount, setIsOrderModalOpen, setSelectedMenu } = contextValue;
+  const { setOrderCount, setIsOrderModalOpen, setSelectedMenu, setIsDimOpen } = contextValue;
 
   const handleMenuClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setIsOrderModalOpen(true);
     setOrderCount(1);
-    
+    setIsDimOpen(true);
+
     const menuInfo = getSelectedMenuInfo(event.currentTarget);
 
     setSelectedMenu(menuInfo);
