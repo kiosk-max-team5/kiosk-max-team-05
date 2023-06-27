@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./Receipt.module.css";
-import ModalContext from "../../ModalContext";
+import ModalContext from "../../../contexts/ModalContext";
 
 export function Receipt() {
   const [time, setTime] = useState<number>(3);
@@ -9,8 +9,8 @@ export function Receipt() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { isReceiptOpen } = contextValue;
-
+  const { modalState, setModalState } = contextValue;
+  const isReceiptOpen = modalState === "receipt";
   useEffect(() => {
     let timer: NodeJS.Timeout | number | undefined;
 
