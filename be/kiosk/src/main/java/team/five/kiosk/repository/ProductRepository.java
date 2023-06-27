@@ -28,7 +28,9 @@ public class ProductRepository {
                 + " AND DATE(sl.sales_at) = CURDATE()"
                 + " GROUP BY p.id"
                 + " ORDER BY total_quantity desc";
+
         SqlParameterSource params = new MapSqlParameterSource("name", category);
+        
         return jdbcTemplate.query(sql, params,
                 (rs, rowNum) -> new Product(
                         rs.getLong("id"),
