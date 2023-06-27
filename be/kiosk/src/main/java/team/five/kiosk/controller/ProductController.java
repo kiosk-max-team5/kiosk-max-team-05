@@ -20,8 +20,9 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/products")
-    public ResponseEntity<ApiResponse> getProducts(@RequestParam String category) {
+    public ResponseEntity<ApiResponse<List<ResponseProduct>>> getProducts(@RequestParam String category) {
         List<ResponseProduct> products = productService.getProducts(category);
+
         return ResponseEntity.ok(ApiResponse.success("200", products));
     }
 }
