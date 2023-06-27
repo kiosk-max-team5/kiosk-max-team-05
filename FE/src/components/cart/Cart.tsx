@@ -10,7 +10,8 @@ export function Cart() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { setIsDimOpen, isOpenCart, setIsOpenCart, setModalState, cartMenuList, setCartMenuList } = contextValue;
+  const { setIsDimOpen, isOpenCart, setIsOpenCart, setModalState, cartMenuList, setCartMenuList, modalState } =
+    contextValue;
 
   const handleClickPaymentButton = () => {
     setModalState("payment");
@@ -29,6 +30,8 @@ export function Cart() {
   }, [cartMenuList, setIsOpenCart]);
 
   useEffect(() => {
+    if (modalState === "payment") return;
+
     let timer: NodeJS.Timeout | number | undefined;
 
     const tick = () => {
@@ -47,7 +50,7 @@ export function Cart() {
     }
 
     return () => clearInterval(timer as NodeJS.Timeout);
-  }, [setIsOpenCart, time, setCartMenuList, isOpenCart]);
+  }, [setIsOpenCart, time, setCartMenuList, isOpenCart, modalState]);
 
   useEffect(() => {
     time.current = 10;
@@ -68,7 +71,7 @@ export function Cart() {
         <div className={styles.PaymentButton} onClick={handleClickPaymentButton}>
           결제하기
         </div>
-        <div className={styles.CountMessages}>{timeDisplay}초남음</div>
+        {modalState === "payment" ? null : <div className={styles.CountMessages}>{timeDisplay}초남음</div>}
       </div>
     </div>
   ) : null;

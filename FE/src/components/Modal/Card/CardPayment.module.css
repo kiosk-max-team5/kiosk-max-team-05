@@ -1,14 +1,15 @@
 .CardPayment {
   position: absolute;
-  background-image: url("https://www.svgrepo.com/show/110447/loading.svg");
-  background-size: 100% auto;
+  background-image: url("https://www.svgrepo.com/show/491270/loading-spinner.svg");
+  /* background-image: url("https://www.svgrepo.com/show/110447/loading.svg"); */
+  background-size: 50px auto;
   background-repeat: no-repeat;
   background-position: center;
   width: 500px;
   height: 500px;
   z-index: 9999;
   top: 500px;
-  animation: spin 3s infinite linear; /* spin 애니메이션 적용 */
+  animation: spin 0.5s infinite linear; /* spin 애니메이션 적용 */
 }
 
 @keyframes spin {

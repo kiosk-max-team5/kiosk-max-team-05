@@ -32,10 +32,6 @@ export function PaymentModal() {
     realCloseFn: handleReallyCloseButtonClick,
   };
 
-  // const handleNoCancleButtonClick = () => {
-  //   setIsClosePaymentModal(false);
-  // };
-
   const getRandomNumber = () => {
     return Math.floor(Math.random() * 4000) + 3000;
   };
@@ -76,7 +72,6 @@ export function PaymentModal() {
           </div>
         </div>
       </div>
-      {/* {isClosePaymentModal && <YNButton onClick={handleReallyCloseButtonClick} />} */}
       {isClosePaymentModal && <YNButton props={ynProps} />}
     </div>
   ) : null;

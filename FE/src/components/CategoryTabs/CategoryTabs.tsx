@@ -1,15 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./CategoryTabs.module.css";
 
-export function CategoryTabs({
-  categories,
-  onClick,
-  activeTab,
-}: {
-  categories: any[];
+type CategoryTabsProps = {
+  categories: string[];
   onClick: (index: number) => void;
   activeTab: number;
-}) {
+};
+
+export function CategoryTabs({ categories, onClick, activeTab }: CategoryTabsProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -51,6 +49,13 @@ export function CategoryTabs({
   );
 }
 
+type TabProps = {
+  name: string;
+  isLastTab: boolean;
+  isActive: boolean;
+  onClick: () => void;
+};
+
 function Tab({ name, isLastTab, isActive, onClick }: TabProps) {
   return (
     <div
@@ -60,10 +65,3 @@ function Tab({ name, isLastTab, isActive, onClick }: TabProps) {
     </div>
   );
 }
-
-type TabProps = {
-  name: string;
-  isLastTab: boolean;
-  isActive: boolean;
-  onClick: () => void;
-};

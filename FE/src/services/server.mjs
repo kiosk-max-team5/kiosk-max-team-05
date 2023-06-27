@@ -30,6 +30,10 @@ app.get("/decaf", (req, res) => {
   const data = fs.readFileSync("./디카페인.json", "utf8");
   res.json(JSON.parse(data));
 });
+app.get("/categories", (req, res) => {
+  const data = fs.readFileSync("./categories.json", "utf8");
+  res.json(JSON.parse(data));
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

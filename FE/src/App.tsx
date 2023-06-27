@@ -10,7 +10,6 @@ function App() {
       <ModalProvider>
         <Modal />
         <MainPage />
-
         <Dim />
       </ModalProvider>
     </div>

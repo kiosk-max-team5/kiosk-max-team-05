@@ -4,10 +4,9 @@ import ModalContext from "../../../contexts/ModalContext";
 import { Menus } from "../../MenuArea/MenuArea";
 
 export function OrderModal() {
-  const contextValue = useContext(ModalContext);
-  if (!contextValue) {
-    throw new Error("ModalContext is not provided");
-  }
+  const [orderAnimationClass, setOrderAnimationClass] = useState<string>("fade-exit");
+  const contextValue = useContext(ModalContext)!;
+
   const {
     setModalState,
     modalState,
@@ -24,14 +23,18 @@ export function OrderModal() {
     setModalState(null);
     setIsDimOpen(false);
   };
-  const handleAddToCartButtonClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleAddToCartButtonClick = () => {
+    setOrderAnimationClass("fade-enter");
+  };
+
+  const handleTransitionEnd = () => {
+    setOrderAnimationClass("");
     setIsOpenCart(true);
     setOrderCount(1);
     if (selectedMenu && cartMenuList && setCartMenuList) {
       const updatedMenu = { ...selectedMenu, count: orderCount };
       setCartMenuList([...cartMenuList, updatedMenu]);
     }
-
     setModalState(null);
     setIsDimOpen(false);
   };
@@ -40,7 +43,7 @@ export function OrderModal() {
     <div className={styles.OrderModal}>
       <CloseButton onClick={handleCloseButtonClick} />
       <div className={styles.Upper}>
-        <Menu selectedMenu={selectedMenu} />
+        <Menu selectedMenu={selectedMenu} animationClass={orderAnimationClass} onTransitionEnd={handleTransitionEnd} />
         <div className={styles.Options}>
           <div className={styles.OptionButtons}>
             <SizeButtons />
@@ -85,9 +88,18 @@ function QuantityControl({ orderCount, setOrderCount }: QuantityControlProps) {
   );
 }
 
-function Menu({ selectedMenu }: { selectedMenu: Menus | null }) {
+function Menu({
+  selectedMenu,
+  animationClass,
+  onTransitionEnd,
+}: {
+  selectedMenu: Menus | null;
+  animationClass: string;
+  onTransitionEnd: () => void;
+}) {
   return (
-    <div className={styles.Menu}>
+    <div className={`${styles.Menu} ${styles[animationClass]}`} onTransitionEnd={onTransitionEnd}>
+      {/* <div className={styles.Menu}> */}
       <img src={selectedMenu?.imgUrl} alt="menu" />
       <div className={styles.MenuName}>{selectedMenu?.name}</div>
       <div className={styles.MenuPrice}>{selectedMenu?.price}</div>

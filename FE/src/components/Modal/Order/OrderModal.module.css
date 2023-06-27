@@ -192,3 +192,25 @@
   color: white;
   background-color: #1b3c35;
 }
+
+.fade-enter {
+  transform: translateY(300%);
+  opacity: 0;
+  transition: opacity 500ms, transform 500ms;
+}
+
+.fade-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit-active {
+  transform: translateY(150%);
+  opacity: 0;
+  transition: opacity 500ms, transform 500ms;
+}

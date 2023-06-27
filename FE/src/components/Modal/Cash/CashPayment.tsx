@@ -19,8 +19,10 @@ export function CashPayment() {
   };
 
   const handleClickPaymentButton = () => {
-    setIsDimOpen(false);
-    setModalState("receipt");
+    if (orderAmount < paidAmount) {
+      setIsDimOpen(false);
+      setModalState("receipt");
+    }
   };
 
   return modalState === "cashPayment" ? (

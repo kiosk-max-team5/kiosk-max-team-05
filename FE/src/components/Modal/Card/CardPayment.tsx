@@ -15,5 +15,5 @@ export function CardPayment() {
   // }, []);
 
   // return <div className={styles.CardPaymentLoading}></div>;
-  return modalState === "cardPayment" ? <div className={styles.CardPaymentLoading}>결제중입니다...</div> : null;
+  return modalState === "cardPayment" ? <div className={styles.CardPayment}></div> : null;
 }
