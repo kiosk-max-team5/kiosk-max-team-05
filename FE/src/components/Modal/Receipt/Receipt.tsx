@@ -9,7 +9,7 @@ export function Receipt() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { modalState, setModalState } = contextValue;
+  const { modalState } = contextValue;
   const isReceiptOpen = modalState === "receipt";
   useEffect(() => {
     let timer: NodeJS.Timeout | number | undefined;

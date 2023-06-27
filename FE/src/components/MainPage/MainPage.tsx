@@ -1,8 +1,9 @@
-import { Cart } from "../Cart/Cart";
 import { CategoryTabs } from "../CategoryTabs/CategoryTabs";
 import { MenuArea } from "../MenuArea/MenuArea";
 import { useEffect, useRef, useState } from "react";
 import styles from "./MainPage.module.css";
+import { Cart } from "../Cart/Cart";
+
 
 type category = {
   name: string;
