@@ -37,9 +37,10 @@ class ProductControllerTest {
         given(productService.getProducts(anyString())).willReturn(responseProducts);
 
         //when
-        final ResultActions result = mockMvc.perform(get("/api/v1/products")
-                        .queryParam("category", "coffee"))
-                .andExpect(status().isOk()).andDo(print());
+        final ResultActions result = mockMvc
+                .perform(get("/api/v1/products").queryParam("category", "coffee"))
+                .andExpect(status().isOk())
+                .andDo(print());
 
         //then
         result.andExpect(jsonPath("status").isString());

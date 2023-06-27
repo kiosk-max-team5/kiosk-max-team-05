@@ -20,6 +20,8 @@ public class ProductService {
     public List<ResponseProduct> getProducts(final String category) {
         List<Product> products = productRepository.findProductsBy(category);
 
-        return products.stream().map(ResponseProduct::from).collect(Collectors.toList());
+        return products.stream()
+                .map(ResponseProduct::from)
+                .collect(Collectors.toList());
     }
 }
