@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import styles from "./PaymentModal.module.css";
-import ModalContext from "../../ModalContext";
+import ModalContext from "../../../contexts/ModalContext";
 
 interface YNProps {
   onClick: (isCancelled: boolean) => void;
@@ -13,14 +13,7 @@ export function PaymentModal() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const {
-    setIsReceiptOpen,
-    isPaymentModalOpen,
-    setIsPaymentModalOpen,
-    setIsDimOpen,
-    setIsCardLoadingOpen,
-    setIsCashPaymentOpen,
-  } = contextValue;
+  const { setIsDimOpen, setModalState, modalState } = contextValue;
 
   const handleCloseButtonClick = () => {
     setIsClosePaymentModal(true);
@@ -30,20 +23,14 @@ export function PaymentModal() {
     setIsClosePaymentModal(isCancelled);
   };
   const handleReallyCloseButtonClick = () => {
-    setIsPaymentModalOpen(false);
+    setModalState(null);
     setIsDimOpen(false);
   };
-
 
   const ynProps = {
     onClick: handleYNButton,
     realCloseFn: handleReallyCloseButtonClick,
   };
-
- 
-  // const handleNoCancleButtonClick = () => {
-  //   setIsClosePaymentModal(false);
-  // };
 
   const getRandomNumber = () => {
     return Math.floor(Math.random() * 4000) + 3000;
@@ -52,21 +39,19 @@ export function PaymentModal() {
   const paymentTime = getRandomNumber();
 
   const handleCardPaymentButtonClick = () => {
-    setIsPaymentModalOpen(false);
-    setIsCardLoadingOpen(true);
+    setModalState("cardPayment");
     console.log(paymentTime);
     console.log(typeof paymentTime);
     setTimeout(() => {
-      setIsCardLoadingOpen(false);
       setIsDimOpen(false);
-      setIsReceiptOpen(true);
+      setModalState("receipt");
     }, paymentTime);
   };
 
   const handleCashPaymentButtonClick = () => {
-    setIsPaymentModalOpen(false);
-    setIsCashPaymentOpen(true);
+    setModalState("cashPayment");
   };
+  const isPaymentModalOpen = modalState === "payment";
 
   return isPaymentModalOpen ? (
     <div className={styles.PaymentModal}>
@@ -87,7 +72,6 @@ export function PaymentModal() {
           </div>
         </div>
       </div>
-      {/* {isClosePaymentModal && <YNButton onClick={handleReallyCloseButtonClick} />} */}
       {isClosePaymentModal && <YNButton props={ynProps} />}
     </div>
   ) : null;

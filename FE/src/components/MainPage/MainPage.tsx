@@ -1,23 +1,21 @@
-import { CategoryTabs } from "./CategoryTabs";
-import { MenuArea } from "./MenuArea";
+import { CategoryTabs } from "../CategoryTabs/CategoryTabs";
+import { MenuArea } from "../MenuArea/MenuArea";
+import { useEffect, useRef, useState } from "react";
 import styles from "./MainPage.module.css";
-import { useContext, useEffect, useRef, useState } from "react";
-import { Cart } from "./cart/Cart";
-import ModalContext from "../ModalContext";
+import { Cart } from "../Cart/Cart";
+
+type category = {
+  name: string;
+};
 
 export function MainPage() {
   const [menuData, setMenuData] = useState([]);
-  const [activeTab, setActiveTab] = useState(-1); // add this state
-
-  const contextValue = useContext(ModalContext);
-  if (!contextValue) {
-    throw new Error("ModalContext is not provided");
-  }
-
-  const categories = ["커피", "라떼", "티", "쥬스", "디카페인"];
-  const endpoint = useRef(["coffee", "latte", "tea", "juice", "decaf"]);
+  const [activeTab, setActiveTab] = useState(-1);
   const [currentCategory, setCurrentCategory] = useState(-1);
   const [animationClass, setAnimationClass] = useState("fade-enter");
+
+  const [categories, setCategories] = useState([]);
+  const endpoint = useRef(["coffee", "latte", "tea", "juice", "decaf"]);
 
   const handleTabClick = (index: number) => {
     if (index === currentCategory) return;
@@ -35,11 +33,26 @@ export function MainPage() {
   };
 
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/categories");
+        const data = await response.json();
+        const categoryNames = data.map((category: category) => category.name);
+
+        setCategories(categoryNames);
+      } catch (error) {
+        console.error("Error fetching categories data:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
     const fetchMenuData = async () => {
       if (currentCategory >= 0) {
         try {
           const response = await fetch(`http://localhost:8080/${endpoint.current[currentCategory]}`);
-
           const menuData = await response.json();
 
           setMenuData(menuData);
@@ -49,8 +62,6 @@ export function MainPage() {
       }
     };
     fetchMenuData();
-
-    console.log("안녕");
   }, [currentCategory, endpoint]);
 
   return (

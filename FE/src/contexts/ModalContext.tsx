@@ -1,9 +1,12 @@
 import { createContext, useState, ReactNode } from "react";
-import { Menus } from "./components/MenuArea";
+import { Menus } from "../components/MenuArea/MenuArea";
 
 type ModalContextType = {
-  isOrderModalOpen: boolean;
-  setIsOrderModalOpen: (isOpen: boolean) => void;
+  modalState: "order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null;
+  setModalState: React.Dispatch<
+    React.SetStateAction<"order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null>
+  >;
+
   selectedMenu: Menus | null;
   setSelectedMenu: (menuInfo: Menus | null) => void;
   isOpenCart: boolean;
@@ -12,16 +15,9 @@ type ModalContextType = {
   setCartMenuList: (menuList: CartMenus[]) => void;
   orderCount: number;
   setOrderCount: (count: number) => void;
-  isPaymentModalOpen: boolean;
-  setIsPaymentModalOpen: (isOpen: boolean) => void;
+
   isDimOpen: boolean;
   setIsDimOpen: (isOpen: boolean) => void;
-  isCashPaymentOpen: boolean;
-  setIsCashPaymentOpen: (isOpen: boolean) => void;
-  isCardLoadingOpen: boolean;
-  setIsCardLoadingOpen: (isOpen: boolean) => void;
-  isReceiptOpen: boolean;
-  setIsReceiptOpen: (isOpen: boolean) => void;
 };
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -38,20 +34,21 @@ export interface CartMenus {
 }
 
 export function ModalProvider({ children }: ModalProviderProps) {
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [modalState, setModalState] = useState<
+    "order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null
+  >(null);
+
   const [selectedMenu, setSelectedMenu] = useState<Menus | null>(null);
   const [isOpenCart, setIsOpenCart] = useState(false);
   const [cartMenuList, setCartMenuList] = useState<CartMenus[]>([]); // [{ imgUrl: "", name: "", price: 0 }
   const [orderCount, setOrderCount] = useState(1);
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+
   const [isDimOpen, setIsDimOpen] = useState(false);
-  const [isCashPaymentOpen, setIsCashPaymentOpen] = useState(false);
-  const [isCardLoadingOpen, setIsCardLoadingOpen] = useState(false);
-  const [isReceiptOpen, setIsReceiptOpen] = useState(false);
 
   const value: ModalContextType = {
-    isOrderModalOpen,
-    setIsOrderModalOpen,
+    modalState,
+    setModalState,
+
     selectedMenu,
     setSelectedMenu,
     isOpenCart,
@@ -60,16 +57,9 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setCartMenuList,
     orderCount,
     setOrderCount,
-    isPaymentModalOpen,
-    setIsPaymentModalOpen,
+
     isDimOpen,
     setIsDimOpen,
-    isCashPaymentOpen,
-    setIsCashPaymentOpen,
-    isCardLoadingOpen,
-    setIsCardLoadingOpen,
-    isReceiptOpen,
-    setIsReceiptOpen,
   };
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
