@@ -8,11 +8,8 @@ spring:
   config:
     activate:
       on-profile: local
-  h2:
-    console:
-      enabled: true
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb;MODE=MySQL;
-    username: sa
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://my-rds-instance.cbacrydrinw6.ap-northeast-2.rds.amazonaws.com:3306/kiosk_rds?useSSL=false
+    username: team5
+    password: kiosk1234

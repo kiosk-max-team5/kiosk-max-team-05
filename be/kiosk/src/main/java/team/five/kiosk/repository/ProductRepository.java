@@ -20,10 +20,14 @@ public class ProductRepository {
 
 
     public List<Product> findProductsBy(final String category) {
-        String sql = "select * " +
-                "from product p, category c " +
-                "where p.category_id = c.id " +
-                "and c.name = :name";
+        String sql = "SELECT p.*, SUM(sl.count)  total_quantity"
+                + " FROM product p"
+                + " JOIN category c ON p.category_id = c.id"
+                + " JOIN sales_log sl ON p.id = sl.product_id"
+                + " WHERE c.name = :name"
+                + " AND DATE(sl.sales_at) = CURDATE()"
+                + " GROUP BY p.id"
+                + " ORDER BY total_quantity desc";
         SqlParameterSource params = new MapSqlParameterSource("name", category);
         return jdbcTemplate.query(sql, params,
                 (rs, rowNum) -> new Product(
