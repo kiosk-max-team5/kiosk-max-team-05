@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./MainPage.module.css";
 import { Cart } from "../Cart/Cart";
 
+
 type category = {
   name: string;
 };
