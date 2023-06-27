@@ -1,11 +1,9 @@
-DROP TABLE IF EXISTS category;
 CREATE TABLE category (
       id bigint unsigned NOT NULL AUTO_INCREMENT,
       name varchar(20) NOT NULL COMMENT '카테고리명',
       PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS product;
 CREATE TABLE product (
     id bigint unsigned NOT NULL AUTO_INCREMENT,
     category_id bigint unsigned NOT NULL,
