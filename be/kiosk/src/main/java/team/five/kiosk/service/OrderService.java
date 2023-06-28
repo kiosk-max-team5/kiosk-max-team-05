@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.five.kiosk.domain.Order;
 import team.five.kiosk.domain.OrderDetail;
+import team.five.kiosk.domain.Payment;
 import team.five.kiosk.dto.RequestOrder;
 import team.five.kiosk.repository.OrderRepository;
 
@@ -16,20 +17,20 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-
+    private final PaymentService paymentService;
 
     @Transactional
     public Long order(RequestOrder requestOrder) {
         // 결제 수단(payment) 조회
-        Long paymentId = orderRepository.findPaymentIdByPaymentName(requestOrder)
-                .orElseThrow(() -> new IllegalArgumentException("지원하지 않는 결제 방법입니다."));
+        Payment payment = paymentService.findPayment(requestOrder.getPayment());
 
         // order 저장
-        Order order = requestOrder.toOrder(paymentId);
-        if ("card".equals(requestOrder.getPayment())) {
+        Order order = requestOrder.toOrder(payment.getId());
+        paymentService.process(payment);
 
-            order.payCard();
-        }
+        //TODO: 메서드명 수정필요
+        order.complete();
+
         Long orderId = orderRepository.createOrder(order);
 
         // orderDetail 저장
@@ -38,4 +39,5 @@ public class OrderService {
 
         return orderId;
     }
+
 }

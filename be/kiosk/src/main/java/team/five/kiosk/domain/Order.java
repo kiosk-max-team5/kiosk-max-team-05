@@ -24,7 +24,7 @@ public class Order {
         this.inputCost = inputCost;
     }
 
-    public void payCard() {
+    public void complete() {
         inputCost = totalCost;
     }
 }
