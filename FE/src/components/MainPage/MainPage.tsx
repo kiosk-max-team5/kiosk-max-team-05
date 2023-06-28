@@ -106,8 +106,8 @@ export function MainPage() {
           const response = await fetch("/api/v1/products?category=coffee");
           // const response = await fetch(`http://52.78.214.187:8080/api/v1/products?category=coffee`);
 
-          const menuData = await response.json();
-          console.log(menuData);
+          const data = await response.json();
+          const menuData = data.message;
 
           setMenuData(menuData);
           setAnimationClass("fade");
