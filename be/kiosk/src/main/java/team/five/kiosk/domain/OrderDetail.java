@@ -1,5 +1,6 @@
 package team.five.kiosk.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -16,10 +17,13 @@ public class OrderDetail {
 
     private int count;
 
-    public OrderDetail(Long productId, String size, String temperature, int count) {
+    @Builder
+    public OrderDetail(Long productId, Long orderId, String size, String temperature, int count) {
         this.productId = productId;
+        this.orderId = orderId;
         this.size = size;
         this.temperature = temperature;
         this.count = count;
     }
+
 }
