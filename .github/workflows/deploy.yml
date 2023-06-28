@@ -44,6 +44,7 @@ jobs:
           mysql user: 'team5'
           mysql password: ${{ secrets.MYSQL_PASSWORD }}
 
+
       - name: Build with Gradle
         run: |
           cd be/kiosk
