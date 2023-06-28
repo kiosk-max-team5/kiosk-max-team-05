@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./MainPage.module.css";
 import { Cart } from "../Cart/Cart";
 
-type category = {
-  name: string;
-};
+// type category = {
+//   name: string;
+// };
 
 export function MainPage() {
   const [menuData, setMenuData] = useState([]);
@@ -17,7 +17,8 @@ export function MainPage() {
   const [animationClass, setAnimationClass] = useState("");
   const [isTransitionEnd, setIsTransitionEnd] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
+  const categories = ["커피", "라떼", "티", "쥬스", "디카페인"];
   const endpoint = useRef(["coffee", "latte", "tea", "juice", "decaf"]);
 
   const handleTabClick = (index: number) => {
@@ -81,29 +82,32 @@ export function MainPage() {
   //   handleTabClick(0);
   // };
 
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:8080/categories");
+  //       const data = await response.json();
+  //       const categoryNames = data.map((category: category) => category.name);
+
+  //       setCategories(categoryNames);
+  //     } catch (error) {
+  //       console.error("Error fetching categories data:", error);
+  //     }
+  //   };
+
+  //   fetchCategories();
+  // }, []);
+
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/categories");
-        const data = await response.json();
-        const categoryNames = data.map((category: category) => category.name);
-
-        setCategories(categoryNames);
-      } catch (error) {
-        console.error("Error fetching categories data:", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  useEffect(() => {
-    console.log("페치됏다");
     const fetchMenuData = async () => {
       if (currentCategory >= 0) {
         try {
-          const response = await fetch(`http://localhost:8080/${endpoint.current[currentCategory]}`);
+          // const response = await fetch(`http://localhost:8080/${endpoint.current[currentCategory]}`);
+          const response = await fetch("/api/v1/products?category=coffee");
+          // const response = await fetch(`http://52.78.214.187:8080/api/v1/products?category=coffee`);
+
           const menuData = await response.json();
+          console.log(menuData);
 
           setMenuData(menuData);
           setAnimationClass("fade");
@@ -114,7 +118,6 @@ export function MainPage() {
       }
     };
     fetchMenuData();
-    // setIsFetched(true);
   }, [currentCategory, endpoint]);
 
   return (

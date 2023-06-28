@@ -16,11 +16,11 @@ type MenuAreaProps = {
 };
 
 export function MenuArea({ menus, animationClass, onTransitionEnd }: MenuAreaProps) {
-  console.log(animationClass);
-  console.log("페이드엔터가 아니야" + (animationClass !== "fade-enter"));
+  // console.log(animationClass);
+  // console.log("페이드엔터가 아니야" + (animationClass !== "fade-enter"));
   const handleTransitionEnd = () => {
     onTransitionEnd();
-    console.log("트랜지션엔드끗");
+    // console.log("트랜지션엔드끗");
   };
   return (
     <div
