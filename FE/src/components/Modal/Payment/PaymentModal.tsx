@@ -40,8 +40,7 @@ export function PaymentModal() {
 
   const handleCardPaymentButtonClick = () => {
     setModalState("cardPayment");
-    console.log(paymentTime);
-    console.log(typeof paymentTime);
+
     setTimeout(() => {
       setIsDimOpen(false);
       setModalState("receipt");
@@ -55,26 +54,44 @@ export function PaymentModal() {
 
   return isPaymentModalOpen ? (
     <div className={styles.PaymentModal}>
-      <div className={styles.CloseButton} onClick={handleCloseButtonClick}>
-        X
-      </div>
+      {!isClosePaymentModal && (
+        <div className={styles.CloseButton} onClick={handleCloseButtonClick}>
+          X
+        </div>
+      )}
       <div className={styles.Content}>
         <div className={styles.Images}>
           <div className={styles.CardImage}>💳</div>
           <div className={styles.CashImage}>💵</div>
         </div>
         <div className={styles.ButtonContainer}>
-          <div className={styles.Button} onClick={handleCardPaymentButtonClick}>
-            카드결제
-          </div>
-          <div className={styles.Button} onClick={handleCashPaymentButtonClick}>
-            현금결제
-          </div>
+          <Button onClick={handleCardPaymentButtonClick} text="카드결제" />
+          <Button onClick={handleCashPaymentButtonClick} text="현금결제" />
         </div>
       </div>
       {isClosePaymentModal && <YNButton props={ynProps} />}
     </div>
   ) : null;
+}
+
+function Button({ onClick, text }: { onClick: () => void; text: string }) {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const handleMouseDown = () => {
+    setIsZoomed(true);
+  };
+  const handleMouseUp = () => {
+    setIsZoomed(false);
+    onClick();
+  };
+  return (
+    <div
+      className={`${styles.Button} ${isZoomed ? styles.zoomed : ""}`}
+      // onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}>
+      {text}
+    </div>
+  );
 }
 
 function YNButton({ props }: { props: YNProps }) {

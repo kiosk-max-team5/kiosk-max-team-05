@@ -1,13 +1,26 @@
 .Cart {
+  border: 2px solid rgba(125, 125, 125, 0.3);
+  /* position: relative; */
   display: flex;
   /* flex-shrink: 0; */
   justify-content: space-evenly;
-  width: 1000px;
-  height: 450px;
+  width: 100%;
+  padding: 3rem;
+  box-sizing: border-box;
+  opacity: 1;
+  animation: fadeIn 0.5s forwards;
 
-  bottom: 0px;
+  background-color: #fff;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .MenuContainer {
   position: relative;
   display: flex;
@@ -16,11 +29,10 @@
   justify-content: center;
   align-items: center;
   width: 500px;
-  height: 450px;
-  gap: 35px;
-
+  height: 350px;
+  gap: 3rem;
+  padding: 2rem;
   overflow: scroll;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -30,7 +42,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
   padding: 25px;
@@ -38,15 +49,16 @@
   font-weight: 100;
   width: 150px;
   height: 150px;
-  border: 2px solid rgb(213, 213, 213);
+  border: 2px solid #d5d5d5;
   border-radius: 20px;
   background-color: white;
+  animation: fade-spin-mount 1s forwards;
 }
 
 .Menu img {
   position: relative;
-  width: 50%;
-  height: 50%;
+  width: 112.5px;
+  height: 112.5px;
 }
 
 .MenuName {
@@ -72,8 +84,8 @@
   height: 40px;
   font-weight: 700;
   border-radius: 50%;
-  border: 1px solid black;
-  background-color: #1b3c35;
+  border: 1px solid #d5d5d5;
+  background-color: #7c51a1;
   color: white;
 }
 
@@ -85,66 +97,115 @@
 
   right: 0px;
   top: 0px;
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   transform: translate(50%, -50%) translate(-4px, 11px);
 
   font-size: 30px;
   font-weight: 100;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid #d5d5d5;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .MenuCloseButtonText {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  font-size: rem;
   font-weight: 100;
 }
 
 .ButtonContainer {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 400px;
-  height: 450px;
-  gap: 30px;
+  margin-top: 40px;
   color: white;
-  font-size: 35px;
+  font-size: 3rem;
 }
 
 .CancelButton {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 350px;
-  height: 150px;
+  padding: 1rem 2rem;
   border-radius: 20px;
-  background-color: #008f70;
-
+  background-color: #fe5757;
   flex-shrink: 0;
+  margin-bottom: 40px;
+  cursor: pointer;
 }
 
 .PaymentButton {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 350px;
-  height: 200px;
+  padding: 2rem 3rem;
   border-radius: 20px;
-  background-color: #1b3c35;
-
+  background-color: #7c51a1;
+  margin-bottom: 80px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .CountMessages {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 300px;
   color: black;
+}
+
+.fade-enter {
+  opacity: 0;
+  animation: fade-spin-translate 2s forwards;
+}
+
+@keyframes fade-spin-translate {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(262.5%, -262.5%) rotate(270deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(350%, -350%) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-spin-mount {
+  0% {
+    transform: translate(-150%, -150%) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-112.5%, -112.5%) rotate(270deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.fade-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit-active {
+  transform: translateY(150%);
+  opacity: 0;
+  transition: opacity 500ms, transform 500ms;
+}
+
+.zoomed {
+  transform: scale(1.1);
 }

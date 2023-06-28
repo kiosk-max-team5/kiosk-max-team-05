@@ -16,6 +16,9 @@ type ModalContextType = {
   orderCount: number;
   setOrderCount: (count: number) => void;
 
+  isZoomed: boolean;
+  setIsZoomed: (isZoomed: boolean) => void;
+
   isDimOpen: boolean;
   setIsDimOpen: (isOpen: boolean) => void;
 };
@@ -34,9 +37,10 @@ export interface CartMenus {
 }
 
 export function ModalProvider({ children }: ModalProviderProps) {
-  const [modalState, setModalState] = useState<
-    "order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null
-  >(null);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [modalState, setModalState] = useState<"order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null>(
+    null
+  );
 
   const [selectedMenu, setSelectedMenu] = useState<Menus | null>(null);
   const [isOpenCart, setIsOpenCart] = useState(false);
@@ -57,6 +61,9 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setCartMenuList,
     orderCount,
     setOrderCount,
+
+    isZoomed,
+    setIsZoomed,
 
     isDimOpen,
     setIsDimOpen,

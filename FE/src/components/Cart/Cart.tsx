@@ -5,7 +5,8 @@ import ModalContext, { CartMenus } from "../../contexts/ModalContext";
 export function Cart() {
   const time = useRef(10);
   const [timeDisplay, setTimeDisplay] = useState(time.current);
-
+  const [paymentIsZoomed, setPaymentIsZoomed] = useState(false);
+  const [cancelIsZoomed, setCancelIsZoomed] = useState(false);
   const contextValue = useContext(ModalContext);
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
@@ -13,12 +14,11 @@ export function Cart() {
   const { setIsDimOpen, isOpenCart, setIsOpenCart, setModalState, cartMenuList, setCartMenuList, modalState } =
     contextValue;
 
-  const handleClickPaymentButton = () => {
+  const handlePaymentMouseUp = () => {
     setModalState("payment");
     setIsDimOpen(true);
   };
-
-  const handleClickCancelButton = () => {
+  const handleCancelMouseUp = () => {
     setCartMenuList([]);
     setIsOpenCart(false);
   };
@@ -38,7 +38,7 @@ export function Cart() {
       if (time.current <= 0) {
         setCartMenuList([]);
         setIsOpenCart(false);
-        time.current = 10;
+        time.current = 500;
       } else {
         time.current -= 1;
       }
@@ -53,7 +53,7 @@ export function Cart() {
   }, [setIsOpenCart, time, setCartMenuList, isOpenCart, modalState]);
 
   useEffect(() => {
-    time.current = 10;
+    time.current = 5000;
     setTimeDisplay(time.current);
   }, [cartMenuList]);
 
@@ -65,16 +65,33 @@ export function Cart() {
         ))}
       </div>
       <div className={styles.ButtonContainer}>
-        <div className={styles.CancelButton} onClick={handleClickCancelButton}>
-          전체취소
-        </div>
-        <div className={styles.PaymentButton} onClick={handleClickPaymentButton}>
-          결제하기
-        </div>
+        <Button text="전체취소" className="CancelButton" onMouseUp={handleCancelMouseUp} />
+        <Button text="결제하기" className="PaymentButton" onMouseUp={handlePaymentMouseUp} />
         {modalState === "payment" ? null : <div className={styles.CountMessages}>{timeDisplay}초남음</div>}
       </div>
     </div>
   ) : null;
+}
+
+function Button({ text, className, onMouseUp }: { text: string; className: string; onMouseUp: () => void }) {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const handleMouseDown = () => {
+    setIsZoomed(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsZoomed(false);
+    onMouseUp();
+  };
+
+  return (
+    <div
+      className={`${styles[className]} ${isZoomed ? styles.zoomed : ""}`}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}>
+      {text}
+    </div>
+  );
 }
 
 function Menu({
@@ -88,8 +105,14 @@ function Menu({
   cartMenuList: CartMenus[];
   setCartMenuList: (menuList: CartMenus[]) => void;
 }) {
+  const [menuAnimation, setMenuAnimation] = useState("");
+
   const handleCloseButton = () => {
-    handleRemoveFromCart(index);
+    setMenuAnimation("fade-enter");
+    setTimeout(() => {
+      handleRemoveFromCart(index);
+      setMenuAnimation("fade-exit");
+    }, 500);
   };
 
   const handleRemoveFromCart = (targetIndex: number) => {
@@ -101,11 +124,14 @@ function Menu({
   };
 
   return (
-    <div className={styles.Menu}>
+    //menuAnimation도 추가로 넣어줘야함
+    //<div className={`${styles.MenuArea} ${styles[animationClass]}`}>
+    <div className={`${styles.Menu} ${menuAnimation ? styles[menuAnimation] : ""}`}>
+      {/* <div className={styles.Menu}> */}
       <div className={styles.MenuCount}>{menu.count}</div>
       <img src={menu?.imgUrl} alt="menu" />
       <div className={styles.MenuName}>{menu?.name}</div>
-      <div className={styles.MenuPrice}>{menu?.price}</div>
+      <div className={styles.MenuPrice}>₩ {menu?.price}</div>
       <div className={styles.MenuCloseButton} key={index} onClick={handleCloseButton}>
         <span className={styles.MenuCloseButtonText}>X</span>
       </div>

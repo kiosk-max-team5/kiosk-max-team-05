@@ -14,6 +14,11 @@ export function CardPayment() {
   //   console.log("안녕");
   // }, []);
 
-  // return <div className={styles.CardPaymentLoading}></div>;
-  return modalState === "cardPayment" ? <div className={styles.CardPayment}></div> : null;
+  // return modalState === "cardPayment" ? <div className={styles.CardPayment}></div> : null;
+  return (
+    <>
+      {modalState === "cardPayment" && <div className={styles.CardPayment}></div>}
+      <div className={styles.Message}>결제 중입니다</div>
+    </>
+  );
 }

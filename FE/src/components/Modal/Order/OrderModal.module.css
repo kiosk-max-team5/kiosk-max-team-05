@@ -12,6 +12,8 @@
   border: 2px solid rgb(213, 213, 213);
   border-radius: 30px;
   z-index: 9999;
+  opacity: 1;
+  animation: fadeIn 0.8s forwards;
 }
 
 .Upper {
@@ -31,31 +33,53 @@
   height: 100px;
 }
 
+/* display: flex;
+position: relative;
+flex-direction: column;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+gap: 15px;
+font-size: 22px;
+font-weight: 100;
+width: 350px;
+height: 350px;
+border: 2px solid #d5d5d5;
+border-radius: 20px;
+background-color: #ffffff;
+margin: 25px 25px; */
+
 .Menu {
-  position: relative;
   display: flex;
+  position: relative;
   flex-direction: column;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  font-size: 22px;
+  gap: 12px;
+  font-size: 18px;
   font-weight: 100;
   width: 300px;
   height: 300px;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 20px;
   background-color: white;
-
+  transform: scale(1);
   transition: transform 1s;
 }
-.Menu.animating {
-  transform: translateY(216px);
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .Menu img {
-  width: 150px;
-  height: 150px;
+  width: 192px;
+  height: 192px;
 }
 
 .MenuName {
@@ -95,6 +119,7 @@
   position: relative;
   display: flex;
   gap: 20px;
+  cursor: pointer;
 }
 
 .Button {
@@ -115,8 +140,7 @@
   align-items: center;
   width: 120px;
   height: 60px;
-  border: 4px solid rgb(0, 180, 42);
-  /* border: 4px solid rgb(0, 243, 211); */
+  border: 4px solid #c179ff;
 
   border-radius: 20px;
   color: white;
@@ -145,6 +169,7 @@
   display: flex;
   font-size: 50px;
   font-weight: 100;
+  cursor: pointer;
 }
 
 .Quantity {
@@ -154,9 +179,9 @@
   width: 40px;
   height: 40px;
   font-size: 20px;
-  font-weight: 100;
+  font-weight: 400;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid #8b8b8b;
 }
 
 .CloseButton {
@@ -167,12 +192,13 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid #8b8b8b;
   left: 770px;
   top: -20px;
   background-color: white;
   font-size: 20px;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .AddToCartButton {
@@ -181,7 +207,7 @@
   justify-content: center;
   align-items: center;
   width: 500px;
-  height: 60px;
+  height: 80px;
   font-size: 20px;
   font-weight: 100;
   border-radius: 20px;
@@ -190,13 +216,31 @@
   font-size: 25px;
   font-weight: 700;
   color: white;
-  background-color: #1b3c35;
+  background-color: #7c51a1;
+  cursor: pointer;
 }
 
 .fade-enter {
-  transform: translateY(300%);
+  transform: translate(-300%, 150%) scale(0.3);
+  /* scale(0.2); */
   opacity: 0;
-  transition: opacity 500ms, transform 500ms;
+  transition: opacity 1500ms, transform 700ms;
+  /* animation: fade-spin-translate 1s forwards; */
+}
+
+@keyframes fade-spin-translate {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(262.5%, -262.5%) rotate(270deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(350%, -350%) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 .fade-enter-active {
@@ -213,4 +257,8 @@
   transform: translateY(150%);
   opacity: 0;
   transition: opacity 500ms, transform 500ms;
+}
+
+.zoomed {
+  transform: scale(1.3);
 }

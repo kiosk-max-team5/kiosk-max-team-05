@@ -77,13 +77,33 @@ function QuantityControl({ orderCount, setOrderCount }: QuantityControlProps) {
 
   return (
     <div className={styles.QuantityControl}>
-      <div className={styles.Minus} onClick={handleClickMinus}>
-        -
-      </div>
+      <PlusMinusButton onClick={handleClickMinus} text="-" className={"Minus"} />
       <div className={styles.Quantity}>{orderCount}</div>
-      <div className={styles.Plus} onClick={handleClickPlus}>
-        +
-      </div>
+      <PlusMinusButton onClick={handleClickPlus} text="+" className={"Plus"} />
+    </div>
+  );
+}
+
+//plus minus 둘을 사용하는 공용 컴포넌트 버튼
+function PlusMinusButton({ onClick, text, className }: { onClick: () => void; text: string; className: string }) {
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const handleMouseDown = () => {
+    setIsZoomed(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsZoomed(false);
+    onClick();
+  };
+
+  return (
+    <div
+      className={`${styles[className]} ${isZoomed ? styles.zoomed : ""}`}
+      // onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}>
+      {text}
     </div>
   );
 }
@@ -107,9 +127,21 @@ function Menu({
   );
 }
 
-function AddToCartButton({ onClick }: { onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void }) {
+function AddToCartButton({ onClick }: { onClick: () => void }) {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const handleMouseDown = () => {
+    setIsZoomed(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsZoomed(false);
+    onClick();
+  };
   return (
-    <div className={styles.AddToCartButton} onClick={onClick}>
+    <div
+      className={`${styles.AddToCartButton} ${isZoomed ? styles.zoomed : ""}`}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}>
       담기
     </div>
   );
@@ -135,14 +167,14 @@ function SizeButtons() {
       <Button
         id="big"
         text="큰거"
-        color="#1b3c35"
+        color="#c2abd6"
         isSelected={selectedButtonId === "big"}
         onClick={() => handleOptionButtonClick("big")}
       />
       <Button
         id="small"
         text="작은거"
-        color="#1b3c35"
+        color="#c2abd6"
         isSelected={selectedButtonId === "small"}
         onClick={() => handleOptionButtonClick("small")}
       />
@@ -162,14 +194,14 @@ function TempButtons() {
       <Button
         id="hot"
         text="뜨거운것"
-        color="#397e6f"
+        color="#7c51a1"
         isSelected={selectedButtonId === "hot"}
         onClick={() => handleOptionButtonClick("hot")}
       />
       <Button
         id="cold"
         text="차가운것"
-        color="#397e6f"
+        color="#7c51a1"
         isSelected={selectedButtonId === "cold"}
         onClick={() => handleOptionButtonClick("cold")}
       />

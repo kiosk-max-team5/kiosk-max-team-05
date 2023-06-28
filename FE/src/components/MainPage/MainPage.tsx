@@ -10,27 +10,76 @@ type category = {
 
 export function MainPage() {
   const [menuData, setMenuData] = useState([]);
+
+  const indexRef = useRef(0);
   const [activeTab, setActiveTab] = useState(-1);
   const [currentCategory, setCurrentCategory] = useState(-1);
-  const [animationClass, setAnimationClass] = useState("fade-enter");
-
+  const [animationClass, setAnimationClass] = useState("");
+  const [isTransitionEnd, setIsTransitionEnd] = useState(false);
+  const [isFetched, setIsFetched] = useState(false);
   const [categories, setCategories] = useState([]);
   const endpoint = useRef(["coffee", "latte", "tea", "juice", "decaf"]);
 
   const handleTabClick = (index: number) => {
     if (index === currentCategory) return;
     setAnimationClass("fade-enter");
-    setTimeout(() => {
-      setAnimationClass("fade-exit");
-
-      setCurrentCategory(index);
-      setActiveTab(index);
-    }, 450);
+    indexRef.current = index;
   };
+
+  useEffect(() => {
+    if (isTransitionEnd) {
+      setCurrentCategory(indexRef.current);
+      setActiveTab(indexRef.current);
+    }
+  }, [isTransitionEnd]);
+
+  useEffect(() => {
+    console.log("패치된거임");
+    setIsFetched(false);
+    // setAnimationClass("fade");
+  }, [isFetched]);
+
+  useEffect(() => {
+    setAnimationClass("fade-exit");
+    setIsTransitionEnd(false);
+  }, [activeTab]);
+
+  const handleTransitionEnd = () => {
+    setIsTransitionEnd(true);
+  };
+
+  // useEffect(() => {
+  //   setAnimationClass("fade-enter");
+  // }, [index]);
+
+  // useEffect(() => {
+  //   // if (isTransitionEnd) {
+  //   setCurrentCategory(index);
+  //   setActiveTab(index);
+  //   setAnimationClass("fade-exit");
+  //   // }
+  // }, [index]);
+
+  // const handleTabClick = (index: number) => {
+  //   if (index === currentCategory) return;
+  //   setAnimationClass("fade-enter");
+  //   setTimeout(() => {
+  //     setCurrentCategory(index);
+  //     setActiveTab(index);
+  //     setAnimationClass("fade-exit");
+  //   }, 1100);
+  // };
 
   const handleClickMainImage = () => {
-    handleTabClick(0);
+    indexRef.current = 0;
+    setIsTransitionEnd(true);
+    console.log("메인이미지 클릭");
   };
+
+  // const handleClickMainImage = () => {
+
+  //   handleTabClick(0);
+  // };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -49,6 +98,7 @@ export function MainPage() {
   }, []);
 
   useEffect(() => {
+    console.log("페치됏다");
     const fetchMenuData = async () => {
       if (currentCategory >= 0) {
         try {
@@ -56,21 +106,27 @@ export function MainPage() {
           const menuData = await response.json();
 
           setMenuData(menuData);
+          setAnimationClass("fade");
+          setIsFetched(true);
         } catch (error) {
           console.error("Error fetching coffee data:", error);
         }
       }
     };
     fetchMenuData();
+    // setIsFetched(true);
   }, [currentCategory, endpoint]);
 
   return (
     <div className={styles.MainPage}>
       <CategoryTabs categories={categories} onClick={handleTabClick} activeTab={activeTab} />
       {currentCategory >= 0 ? (
-        <MenuArea animationClass={animationClass} menus={menuData} />
+        <MenuArea animationClass={animationClass} menus={menuData} onTransitionEnd={handleTransitionEnd} />
       ) : (
-        <div className={styles.MainImage} onClick={handleClickMainImage}></div>
+        // <MenuArea animationClass={animationClass} menus={menuData} />
+        <div className={styles.MainImage} onClick={handleClickMainImage}>
+          <img src="/assets/logo.svg" alt="main" />
+        </div>
       )}
       <Cart />
     </div>

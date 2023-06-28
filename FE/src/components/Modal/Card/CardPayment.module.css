@@ -9,7 +9,21 @@
   height: 500px;
   z-index: 9999;
   top: 500px;
-  animation: spin 0.5s infinite linear; /* spin 애니메이션 적용 */
+  animation: spin 0.3s infinite linear;
+}
+
+.Message {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  font-size: 50px;
+  font-weight: 700;
+  color: black;
+  z-index: 9999;
+  top: 600px;
 }
 
 @keyframes spin {

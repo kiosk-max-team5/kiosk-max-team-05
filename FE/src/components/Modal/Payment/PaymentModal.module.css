@@ -11,6 +11,16 @@
   border: 2px solid rgb(213, 213, 213);
   border-radius: 30px;
   z-index: 9999;
+  animation: fadeIn 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .Content {
@@ -48,7 +58,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1b3c35;
+  background-color: #7c51a1;
   width: 300px;
   height: 150px;
   border-radius: 30px;
@@ -63,7 +73,7 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
-
+  border: 1px solid rgb(146, 146, 146);
   background-color: white;
   font-size: 30px;
   font-weight: 400;
@@ -116,9 +126,13 @@
   width: 150px;
   height: 75px;
   border-radius: 30px;
-  background-color: #1b3c35;
+  background-color: #7c51a1;
 
   font-size: 30px;
   cursor: pointer;
   color: white;
+}
+
+.zoomed {
+  transform: scale(1.1);
 }

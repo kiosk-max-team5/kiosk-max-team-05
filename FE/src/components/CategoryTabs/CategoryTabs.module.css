@@ -1,7 +1,7 @@
 .CategoryTabs {
   display: flex;
   height: 150px;
-  border: 1px solid black;
+  border: 1px solid #7c51a1;
   overflow: hidden;
 }
 
@@ -9,12 +9,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid black;
+  border-right: 1px solid #7c51a1;
   width: 300px;
   height: 100%;
   font-size: 35px;
   font-weight: 200;
   flex-shrink: 0;
+  color: rgb(99, 99, 99);
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  0% {
+    background: white; /* 애니메이션 시작시 배경색 */
+  }
+  100% {
+    background: #7c51a1; /* 애니메이션 종료시 배경색 */
+  }
 }
 
 .LastTab {
@@ -22,5 +33,16 @@
 }
 
 .ActiveTab {
-  font-weight: 400;
+  font-weight: 700;
+  color: white;
+  background-color: #7c51a1;
+  background: white; /* 배경색 초기값 */
+  animation: fadeIn 0.3s forwards; /* 애니메이션 이름, 지속시간, 진행방향 */
+}
+
+.zoomed {
+  /* transform: scale(1.1); */
+  background-color: #c196e747;
+  font-weight: 700;
+  color: white;
 }
