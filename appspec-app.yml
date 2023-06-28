@@ -36,10 +36,10 @@ hooks:
 #  commands:
 #    - mkdir -p /home/ubuntu/kiosk
   AfterInstall:
-    - location: stop.sh
+    - location: stop_was.sh
       timeout: 60
       runas: ubuntu
   ApplicationStart:
-    - location: start.sh
+    - location: start_was.sh
       timeout: 60
       runas: ubuntu
