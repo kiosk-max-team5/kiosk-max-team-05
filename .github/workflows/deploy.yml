@@ -37,6 +37,13 @@ jobs:
       - run: echo "${{ secrets.APPLICATION }}" > application.yml
       - run: mv application.yml be/kiosk/src/main/resources/application.yml
 
+      - name: Setup MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql database: 'my-rds-instance.cbacrydrinw6.ap-northeast-2.rds.amazonaws.com'
+          mysql user: 'team5'
+          mysql password: ${{ secrets.MYSQL_PASSWORD }}
+
       - name: Build with Gradle
         run: |
           cd be/kiosk
