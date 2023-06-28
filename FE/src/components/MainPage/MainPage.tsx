@@ -36,7 +36,7 @@ export function MainPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("/api/v1/products?category=coffee");
+        const response = await fetch("http://localhost:8080/categories");
         const data = await response.json();
         const categoryNames = data.map((category: category) => category.name);
 
