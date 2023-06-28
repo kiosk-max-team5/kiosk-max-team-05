@@ -3,13 +3,44 @@
   flex-direction: column;
 
   margin: 0 auto;
-  border: 3px solid black;
+  border: 6px solid #7c51a1;
   width: 1000px;
   height: 1500px;
   overflow: hidden;
+  opacity: 1;
+  animation: fadeIn 1s;
 }
 
 .MainImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 1000px;
+  height: 1500px;
+  background-color: #7c51a1;
+  /* background-image: url("https://www.cleaneatingkitchen.com/wp-content/uploads/2023/01/Starbucks-Strongest-Coffee-Vertical-Hero-3.jpg"); */
+  /* background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center; */
+}
+
+.MainImage img {
+  width: 700px;
+  height: 700px;
+  opacity: 1;
+  animation: fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* .MainImage {
   position: absolute;
   width: 1000px;
   height: 1500px;
@@ -17,4 +48,4 @@
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center;
-}
+} */

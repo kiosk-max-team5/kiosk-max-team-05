@@ -57,10 +57,30 @@ type TabProps = {
 };
 
 function Tab({ name, isLastTab, isActive, onClick }: TabProps) {
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const handleMouseDown = () => {
+    setIsZoomed(true);
+  };
+
+  const handleMouseUp = () => {
+    onClick();
+    setIsZoomed(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsZoomed(false);
+  };
+
   return (
     <div
-      className={`${styles.Tab} ${isLastTab ? styles.LastTab : ""} ${isActive ? styles.ActiveTab : ""}`}
-      onClick={onClick}>
+      className={`${styles.Tab} ${isLastTab ? styles.LastTab : ""} ${isActive ? styles.ActiveTab : ""} ${
+        isZoomed ? styles.zoomed : ""
+      }`}
+      // onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}>
       {name}
     </div>
   );
