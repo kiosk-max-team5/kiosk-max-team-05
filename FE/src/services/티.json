@@ -1,22 +1,57 @@
 [
   {
-    "imgUrl": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[4004000000039]_20210415142056015.jpg",
-    "name": "얼그레이",
-    "price": 4000
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81-%EA%B3%A0%ED%9D%A5%EC%9C%A0%EC%9E%90-%EB%A0%88%EB%AA%AC-%EC%BA%90%EB%AA%A8%EB%A7%88%EC%9D%BC.jpg",
+    "name": "스파클링 고흥유자 레몬 캐모마일",
+    "price": 6000
   },
   {
-    "imgUrl": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000187]_20210419131229682.jpg",
-    "name": "자몽 허니 블랙티",
-    "price": 4000
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81%EC%8A%A4%EC%9B%A8%EB%94%94%EC%89%AC%EB%A0%88%EB%AA%AC.jpg",
+    "name": "스파클링 제주 레몬 스웨디쉬",
+    "price": 6000
   },
   {
-    "imgUrl": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[4004000000069]_20210415143811387.jpg",
-    "name": "히비스커스티",
-    "price": 4000
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81%EB%A7%9D%EA%B3%A0.jpg",
+    "name": "스파클링 망고 캐모마일",
+    "price": 6000
   },
   {
-    "imgUrl": "https://image.istarbucks.co.kr/upload/store/skuimg/2022/04/[9200000002959]_20220411155905055.jpg",
-    "name": "아이스 유자 민트티",
-    "price": 4000
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%9E%91%EC%84%A4_%ED%95%AB_1.jpg",
+    "name": "제주 유기농 작설",
+    "price": 6000
+  },
+  {
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%ED%94%84%EB%9E%98%EA%B7%B8%EB%9F%B0%ED%8A%B8%EB%82%98%EC%9D%B4%ED%8A%B8%EC%9E%90%EC%8A%A4%EB%AF%BC.jpg",
+    "name": "매화 자스민",
+    "price": 6000
+  },
+  {
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%9E%89%EA%B8%80%EB%A6%AC%EC%89%AC%EB%B8%8C%EB%A0%89%ED%8D%BC%EC%8A%A4%ED%8A%B8_1.jpg",
+    "name": "잉글리쉬 브렉퍼스트",
+    "price": 6000
+  },
+  {
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%82%B4%EA%B5%AC%EC%8B%A4%EB%A1%A0.jpg",
+    "name": "살구실론",
+    "price": 6000
+  },
+  {
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%ED%8C%8C%EB%AF%B8%EA%B7%B8%EB%9E%98%EB%84%A4%EC%9D%B4%ED%8A%B8-%EB%B8%94%EB%A3%A8%EB%B2%A0%EB%A6%AC_1_1_1.jpg",
+    "name": "파미그래네이트 블루베리",
+    "price": 6000
+  },
+  {
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%96%BC-%EA%B7%B8%EB%A0%88%EC%9D%B4_1_1_1.jpg",
+    "name": "얼 그레이",
+    "price": 6000
+  },
+  {
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%95%84%ED%94%84%EB%A6%AC%EC%B9%B8-%EC%84%A0%EB%9D%BC%EC%9D%B4%EC%A6%88_1_1_1.jpg",
+    "name": "아프리칸 선라이즈",
+    "price": 6000
+  },
+  {
+    "imgUrl": "https://www.coffeebeankorea.com/data/menu/%EC%A7%84%EC%85%8D-%ED%8E%98%ED%8D%BC%EB%AF%BC%ED%8A%B8_1_1_1.jpg",
+    "name": "진셍 페퍼민트",
+    "price": 6000
   }
 ]
