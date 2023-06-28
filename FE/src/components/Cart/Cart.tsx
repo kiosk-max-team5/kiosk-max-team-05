@@ -5,8 +5,8 @@ import ModalContext, { CartMenus } from "../../contexts/ModalContext";
 export function Cart() {
   const time = useRef(10);
   const [timeDisplay, setTimeDisplay] = useState(time.current);
-  const [paymentIsZoomed, setPaymentIsZoomed] = useState(false);
-  const [cancelIsZoomed, setCancelIsZoomed] = useState(false);
+  // const [paymentIsZoomed, setPaymentIsZoomed] = useState(false);
+  // const [cancelIsZoomed, setCancelIsZoomed] = useState(false);
   const contextValue = useContext(ModalContext);
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
