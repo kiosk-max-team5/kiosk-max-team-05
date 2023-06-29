@@ -3,7 +3,7 @@ import styles from "./Receipt.module.css";
 import ModalContext from "../../../contexts/ModalContext";
 
 export function Receipt() {
-  const initialData = { orderNumber: 0, orderedProducts: [], payments: "", inputCost: 0, totalCost: 0 };
+  const initialData = { orderNumber: 0, orderedProducts: [], payment: "", inputCost: 0, totalCost: 0 };
   const [time, setTime] = useState<number>(555);
   const [receiptData, setReceiptData] = useState(initialData);
   const contextValue = useContext(ModalContext)!;
@@ -80,7 +80,7 @@ export function Receipt() {
             ))}
           </div>
           <div className={styles.PaymentContainer}>
-            <div className={styles.Payment}>결제방식: {receiptData.payments}</div>
+            <div className={styles.Payment}>결제방식: {receiptData.payment}</div>
             <div className={styles.Payment}>투입금액: {receiptData.inputCost}</div>
             <div className={styles.Payment}>총 결제금액 {receiptData.totalCost}</div>
             <div className={styles.Payment}>잔돈 {receiptData.inputCost - receiptData.totalCost}</div>
