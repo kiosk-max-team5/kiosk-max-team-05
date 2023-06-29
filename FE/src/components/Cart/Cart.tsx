@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Cart.module.css";
-import ModalContext, { CartMenus } from "../../contexts/ModalContext";
+import ModalContext, { CartMenus, selectedMenus } from "../../contexts/ModalContext";
 
 export function Cart() {
   const time = useRef(10);
@@ -11,8 +11,16 @@ export function Cart() {
   if (!contextValue) {
     throw new Error("ModalContext is not provided");
   }
-  const { setIsDimOpen, isOpenCart, setIsOpenCart, setModalState, cartMenuList, setCartMenuList, modalState } =
-    contextValue;
+  const {
+    selectedMenu,
+    setIsDimOpen,
+    isOpenCart,
+    setIsOpenCart,
+    setModalState,
+    cartMenuList,
+    setCartMenuList,
+    modalState,
+  } = contextValue;
 
   const handlePaymentMouseUp = () => {
     setModalState("payment");
@@ -61,7 +69,14 @@ export function Cart() {
     <div className={styles.Cart}>
       <div className={styles.MenuContainer}>
         {cartMenuList?.map((menu, index) => (
-          <Menu key={index} menu={menu} index={index} cartMenuList={cartMenuList} setCartMenuList={setCartMenuList} />
+          <Menu
+            selectedMenu={selectedMenu}
+            key={index}
+            menu={menu}
+            index={index}
+            cartMenuList={cartMenuList}
+            setCartMenuList={setCartMenuList}
+          />
         ))}
       </div>
       <div className={styles.ButtonContainer}>
@@ -99,11 +114,13 @@ function Menu({
   index,
   cartMenuList,
   setCartMenuList,
+  selectedMenu,
 }: {
   menu: CartMenus;
   index: number;
   cartMenuList: CartMenus[];
   setCartMenuList: (menuList: CartMenus[]) => void;
+  selectedMenu: selectedMenus | null;
 }) {
   const [menuAnimation, setMenuAnimation] = useState("");
 
@@ -126,15 +143,23 @@ function Menu({
   return (
     //menuAnimation도 추가로 넣어줘야함
     //<div className={`${styles.MenuArea} ${styles[animationClass]}`}>
-    <div className={`${styles.Menu} ${menuAnimation ? styles[menuAnimation] : ""}`}>
-      {/* <div className={styles.Menu}> */}
-      <div className={styles.MenuCount}>{menu.count}</div>
-      <img src={menu?.imageUrl} alt="menu" />
-      <div className={styles.MenuName}>{menu?.name}</div>
-      <div className={styles.MenuPrice}>₩ {menu?.price}</div>
-      <div className={styles.MenuCloseButton} key={index} onClick={handleCloseButton}>
-        <span className={styles.MenuCloseButtonText}>X</span>
+    <>
+      {/* <div className={`${styles.Temperature} ${selectedMenu?.temperature === "hot" ? styles.Cold : styles.Hot}`}>
+        {selectedMenu?.temperature}
+      </div> */}
+
+      <div className={`${styles.Menu} ${menuAnimation ? styles[menuAnimation] : ""}`}>
+        {/* <div className={styles.Menu}> */}
+        {menu?.temperature === "hot" ? <div className={styles.Hot}>HOT</div> : ""}
+        <div className={styles.MenuSize}>{menu.size === "big" ? "L" : "S"}</div>
+        <div className={styles.MenuCount}>{menu.count}</div>
+        <img src={menu?.imageUrl} alt="menu" />
+        <div className={styles.MenuName}>{menu?.name}</div>
+        <div className={styles.MenuPrice}>₩ {menu?.price}</div>
+        <div className={styles.MenuCloseButton} key={index} onClick={handleCloseButton}>
+          <span className={styles.MenuCloseButtonText}>X</span>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

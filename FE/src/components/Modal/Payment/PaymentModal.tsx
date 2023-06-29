@@ -10,7 +10,6 @@ interface YNProps {
 export function PaymentModal() {
   const [isClosePaymentModal, setIsClosePaymentModal] = useState(false);
   const contextValue = useContext(ModalContext)!;
-
   const { orderInfo, cartMenuList, setIsDimOpen, setModalState, modalState } = contextValue;
 
   const handleCloseButtonClick = () => {
@@ -36,15 +35,41 @@ export function PaymentModal() {
 
   const paymentTime = getRandomNumber();
 
-  const handleCardPaymentButtonClick = () => {
-    console.log(orderInfo);
-    console.log(cartMenuList);
-    // const postData = {
-    //   payments: "카드",
-    //   orderPrice:
-    //   inputPrice: 9500,
-    //   orderProducts: cartMenuList,
-    // };
+  const handleCardPaymentButtonClick = async () => {
+    const orderPrice = cartMenuList.reduce((acc, cur) => {
+      return acc + cur.price * cur.count;
+    }, 0);
+    const postData = {
+      payment: "카드",
+      totalCost: orderPrice,
+      inputCost: orderPrice,
+      orderProducts: cartMenuList.map((menu) => ({
+        productId: menu.id,
+        count: menu.count,
+        size: menu.size,
+        temperature: menu.temperature,
+      })),
+    };
+    console.log(postData);
+
+    try {
+      const response = await fetch("/api/v1/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
 
     setModalState("cardPayment");
     setTimeout(() => {
@@ -52,6 +77,32 @@ export function PaymentModal() {
       setModalState("receipt");
     }, paymentTime);
   };
+
+  // const handleCardPaymentButtonClick = () => {
+  //   const orderPrice = cartMenuList.reduce((acc, cur) => {
+  //     return acc + cur.price * cur.count;
+  //   }, 0);
+  //   const postData = {
+  //     payment: "카드",
+  //     totalCost: orderPrice,
+  //     inputCost: orderPrice,
+  //     orderProducts: cartMenuList.map((menu) => ({
+  //       productId: menu.id,
+  //       count: menu.count,
+  //       size: menu.size,
+  //       temperature: menu.temperature,
+  //     })),
+  //   };
+  //   console.log(postData);
+  //   const jsonPostData = JSON.stringify(postData);
+  //   console.log(jsonPostData);
+
+  //   setModalState("cardPayment");
+  //   setTimeout(() => {
+  //     setIsDimOpen(false);
+  //     setModalState("receipt");
+  //   }, paymentTime);
+  // };
 
   const handleCashPaymentButtonClick = () => {
     setModalState("cashPayment");

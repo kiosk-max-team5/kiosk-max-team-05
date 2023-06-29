@@ -1,8 +1,9 @@
 import { CategoryTabs } from "../CategoryTabs/CategoryTabs";
 import { MenuArea } from "../MenuArea/MenuArea";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./MainPage.module.css";
 import { Cart } from "../Cart/Cart";
+import ModalContext from "../../contexts/ModalContext";
 
 
 // type category = {
@@ -11,11 +12,13 @@ import { Cart } from "../Cart/Cart";
 
 
 export function MainPage() {
-  const [menuData, setMenuData] = useState([]);
+  const contextValue = useContext(ModalContext)!;
+  const { currentCategory, setCurrentCategory } = contextValue;
 
+  const [menuData, setMenuData] = useState([]);
   const indexRef = useRef(0);
   const [activeTab, setActiveTab] = useState(-1);
-  const [currentCategory, setCurrentCategory] = useState(-1);
+  // const [currentCategory, setCurrentCategory] = useState(-1);
   const [animationClass, setAnimationClass] = useState("");
   const [isTransitionEnd, setIsTransitionEnd] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
@@ -34,7 +37,7 @@ export function MainPage() {
       setCurrentCategory(indexRef.current);
       setActiveTab(indexRef.current);
     }
-  }, [isTransitionEnd]);
+  }, [isTransitionEnd, setCurrentCategory]);
 
   useEffect(() => {
     console.log("패치된거임");
@@ -51,54 +54,11 @@ export function MainPage() {
     setIsTransitionEnd(true);
   };
 
-  // useEffect(() => {
-  //   setAnimationClass("fade-enter");
-  // }, [index]);
-
-  // useEffect(() => {
-  //   // if (isTransitionEnd) {
-  //   setCurrentCategory(index);
-  //   setActiveTab(index);
-  //   setAnimationClass("fade-exit");
-  //   // }
-  // }, [index]);
-
-  // const handleTabClick = (index: number) => {
-  //   if (index === currentCategory) return;
-  //   setAnimationClass("fade-enter");
-  //   setTimeout(() => {
-  //     setCurrentCategory(index);
-  //     setActiveTab(index);
-  //     setAnimationClass("fade-exit");
-  //   }, 1100);
-  // };
-
   const handleClickMainImage = () => {
     indexRef.current = 0;
     setIsTransitionEnd(true);
     console.log("메인이미지 클릭");
   };
-
-  // const handleClickMainImage = () => {
-
-  //   handleTabClick(0);
-  // };
-
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:8080/categories");
-  //       const data = await response.json();
-  //       const categoryNames = data.map((category: category) => category.name);
-
-  //       setCategories(categoryNames);
-  //     } catch (error) {
-  //       console.error("Error fetching categories data:", error);
-  //     }
-  //   };
-
-  //   fetchCategories();
-  // }, []);
 
   useEffect(() => {
     const fetchMenuData = async () => {

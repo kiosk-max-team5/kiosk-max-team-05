@@ -27,6 +27,9 @@ type ModalContextType = {
     React.SetStateAction<"order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null>
   >;
 
+  currentCategory: number;
+  setCurrentCategory: React.Dispatch<React.SetStateAction<number>>;
+
   selectedMenu: selectedMenus | null;
   setSelectedMenu: (menuInfo: selectedMenus | null) => void;
   isOpenCart: boolean;
@@ -73,6 +76,9 @@ export interface CartMenus {
   name: string;
   price: number;
   count: number;
+  size?: string;
+  id?: number;
+  temperature?: string;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -82,6 +88,8 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [modalState, setModalState] = useState<"order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null>(
     null
   );
+
+  const [currentCategory, setCurrentCategory] = useState(-1);
 
   const [selectedMenu, setSelectedMenu] = useState<selectedMenus | null>(null);
   const [isOpenCart, setIsOpenCart] = useState(false);
@@ -96,6 +104,9 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const value: ModalContextType = {
     modalState,
     setModalState,
+
+    currentCategory,
+    setCurrentCategory,
 
     selectedMenu,
     setSelectedMenu,
