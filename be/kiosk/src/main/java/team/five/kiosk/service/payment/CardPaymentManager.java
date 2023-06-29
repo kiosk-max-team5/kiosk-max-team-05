@@ -1,4 +1,4 @@
-package team.five.kiosk.global.payment;
+package team.five.kiosk.service.payment;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

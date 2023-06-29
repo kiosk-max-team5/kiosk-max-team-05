@@ -1,4 +1,4 @@
-package team.five.kiosk.global.payment;
+package team.five.kiosk.service.payment;
 
 import team.five.kiosk.domain.Payment;
 import team.five.kiosk.global.common.StatusCode;

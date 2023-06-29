@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import team.five.kiosk.domain.Payment;
 import team.five.kiosk.global.common.StatusCode;
 import team.five.kiosk.global.exception.CustomException;
-import team.five.kiosk.global.payment.PaymentMethod;
+import team.five.kiosk.service.payment.PaymentMethod;
 import team.five.kiosk.repository.PaymentRepository;
 
 @Service
