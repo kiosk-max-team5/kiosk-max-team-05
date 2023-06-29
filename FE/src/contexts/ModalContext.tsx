@@ -11,16 +11,6 @@ export type selectedMenus = {
   count?: number;
 };
 
-// export type selectedMenus = {
-//   imageUrl: string;
-//   name: string;
-//   price: number;
-//   size?: string;
-//   id?: number;
-//   temperature?: string;
-//   count?: number;
-// };
-
 type ModalContextType = {
   modalState: "order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null;
   setModalState: React.Dispatch<
@@ -29,6 +19,9 @@ type ModalContextType = {
 
   currentCategory: number;
   setCurrentCategory: React.Dispatch<React.SetStateAction<number>>;
+
+  paidOrderIDList: number[];
+  setPaidOrderIDList: React.Dispatch<React.SetStateAction<number[]>>;
 
   selectedMenu: selectedMenus | null;
   setSelectedMenu: (menuInfo: selectedMenus | null) => void;
@@ -89,6 +82,8 @@ export function ModalProvider({ children }: ModalProviderProps) {
     null
   );
 
+  const [paidOrderIDList, setPaidOrderIDList] = useState<number[]>([]);
+
   const [currentCategory, setCurrentCategory] = useState(-1);
 
   const [selectedMenu, setSelectedMenu] = useState<selectedMenus | null>(null);
@@ -107,6 +102,9 @@ export function ModalProvider({ children }: ModalProviderProps) {
 
     currentCategory,
     setCurrentCategory,
+
+    paidOrderIDList,
+    setPaidOrderIDList,
 
     selectedMenu,
     setSelectedMenu,

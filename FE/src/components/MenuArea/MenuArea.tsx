@@ -73,72 +73,7 @@ function Menu({ menu, index }: MenuProps) {
       <img src={menu.imageUrl} alt="menu" />
       <div className={styles.MenuName}>{menu.name}</div>
       <div className={styles.MenuPrice}>{menu.price}원</div>
-      {index === 0 && <div className={styles.StarMark}>&#9733;</div>}
+      {index === 0 && <div className={styles.StarMark}>BEST</div>}
     </div>
   );
 }
-// import { useContext } from "react";
-
-// import styles from "./MenuArea.module.css";
-// import ModalContext from "../../contexts/ModalContext";
-
-// export type Menus = {
-//   imageUrl: string;
-//   name: string;
-//   price: number;
-// };
-
-// type MenuAreaProps = {
-//   menus: Menus[];
-//   animationClass: string;
-// };
-
-// export function MenuArea({ menus, animationClass }: MenuAreaProps) {
-//   return (
-//     <div className={`${styles.MenuArea} ${styles[animationClass]}`}>
-//       {menus.map((menu, index) => (
-//         <Menu menu={menu} key={index} index={index} />
-//       ))}
-//     </div>
-//   );
-// }
-
-// function Menu({ menu, index }: { menu: Menus; index: number }) {
-//   const contextValue = useContext(ModalContext)!;
-
-//   const { setOrderCount, setModalState, setSelectedMenu, setIsDimOpen } = contextValue;
-
-//   const handleMenuClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-//     console.log("핸들메뉴");
-//     setModalState("order");
-//     setOrderCount(1);
-//     setIsDimOpen(true);
-
-//     const menuInfo = getSelectedMenuInfo(event.currentTarget);
-
-//     setSelectedMenu(menuInfo);
-//   };
-
-//   function getSelectedMenuInfo(target: HTMLElement): Menus {
-//     const imgElem = target.firstElementChild!;
-//     const imageUrl = imgElem.getAttribute("src")!;
-//     const nameElem = imgElem.nextElementSibling!;
-//     const name = nameElem.textContent!;
-//     const priceElem = nameElem.nextElementSibling!;
-//     const priceText = priceElem.textContent!;
-//     const price = parseInt(priceText, 10);
-
-//     return { imageUrl, name, price };
-//   }
-
-//   return (
-//     <>
-//       <div className={styles.Menu} onClick={handleMenuClick}>
-//         <img src={menu.imageUrl} alt="menu" />
-//         <div className={styles.MenuName}>{menu.name}</div>
-//         <div className={styles.MenuPrice}>{menu.price}</div>
-//         {index === 0 && <div className={styles.StarMark}>&#9733;</div>}
-//       </div>
-//     </>
-//   );
-// }
