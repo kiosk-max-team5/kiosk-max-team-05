@@ -3,11 +3,9 @@ package team.five.kiosk.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import team.five.kiosk.dto.RequestOrder;
+import team.five.kiosk.dto.ResponseReceipt;
 import team.five.kiosk.global.ApiResponse;
 import team.five.kiosk.service.OrderService;
 
@@ -24,5 +22,12 @@ public class OrderController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success("201", orderId));
+    }
+
+    @GetMapping("/orders/{id}")
+    public ResponseEntity<ApiResponse<ResponseReceipt>> getReceipt(@PathVariable Long id) {
+        ResponseReceipt receipt = orderService.findOrderById(id);
+
+        return ResponseEntity.ok(ApiResponse.success("200", receipt));
     }
 }
