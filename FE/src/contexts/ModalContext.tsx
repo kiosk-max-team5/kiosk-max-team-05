@@ -12,6 +12,9 @@ export type selectedMenus = {
 };
 
 type ModalContextType = {
+  isPaymentError: boolean;
+  setIsPaymentError: React.Dispatch<React.SetStateAction<boolean>>;
+  
   modalState: "order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null;
   setModalState: React.Dispatch<
     React.SetStateAction<"order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null>
@@ -77,6 +80,7 @@ export interface CartMenus {
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 export function ModalProvider({ children }: ModalProviderProps) {
+  const [isPaymentError, setIsPaymentError] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const [modalState, setModalState] = useState<"order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null>(
     null
@@ -97,6 +101,8 @@ export function ModalProvider({ children }: ModalProviderProps) {
   // const orderInfoList = useRef([]);
 
   const value: ModalContextType = {
+    isPaymentError,
+    setIsPaymentError,
     modalState,
     setModalState,
 

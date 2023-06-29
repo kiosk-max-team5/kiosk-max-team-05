@@ -84,7 +84,7 @@ margin: 25px 25px; */
 
 .MenuName {
   font-size: 25px;
-  font-weight: 100;
+  font-weight: 400;
   text-align: center;
 }
 
@@ -127,7 +127,7 @@ margin: 25px 25px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
+  width: 150px;
   height: 60px;
   border: 2px solid rgb(213, 213, 213);
 
@@ -139,16 +139,16 @@ margin: 25px 25px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
+  width: 150px;
   height: 60px;
-  border: 4px solid #c179ff;
+  border: 4px solid #c684ff;
 
   border-radius: 20px;
   color: white;
 }
 
 .ButtonText {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
 }
 
@@ -157,8 +157,8 @@ margin: 25px 25px; */
   justify-content: space-evenly;
 
   align-items: center;
-  gap: 10px;
-  width: 200px;
+  gap: 40px;
+  /* width: 200px; */
   height: 60px;
 
   background-color: white;
@@ -168,7 +168,7 @@ margin: 25px 25px; */
 .Minus,
 .Plus {
   display: flex;
-  font-size: 50px;
+  font-size: 100px;
   font-weight: 100;
   cursor: pointer;
 }
@@ -177,9 +177,9 @@ margin: 25px 25px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+  width: 70px;
+  height: 70px;
+  font-size: 35px;
   font-weight: 400;
   border-radius: 50%;
   border: 1px solid #8b8b8b;
@@ -214,7 +214,7 @@ margin: 25px 25px; */
   border-radius: 20px;
   border: 2px solid rgb(213, 213, 213);
   background-color: white;
-  font-size: 25px;
+  font-size: 36px;
   font-weight: 700;
   color: white;
   background-color: #c0abd2;

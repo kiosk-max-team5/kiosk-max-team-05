@@ -10,7 +10,7 @@ interface YNProps {
 export function PaymentModal() {
   const [isClosePaymentModal, setIsClosePaymentModal] = useState(false);
   const contextValue = useContext(ModalContext)!;
-  const { setPaidOrderIDList, cartMenuList, setIsDimOpen, setModalState, modalState } = contextValue;
+  const { setIsPaymentError, setPaidOrderIDList, cartMenuList, setIsDimOpen, setModalState, modalState } = contextValue;
 
   const handleCloseButtonClick = () => {
     setIsClosePaymentModal(true);
@@ -86,6 +86,7 @@ export function PaymentModal() {
       setModalState("receipt");
     } catch (error) {
       console.error("Error:", error);
+      setIsPaymentError(true);
     }
 
     // setModalState("cardPayment");
