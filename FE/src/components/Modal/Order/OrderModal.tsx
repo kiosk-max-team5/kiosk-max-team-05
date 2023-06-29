@@ -183,7 +183,7 @@ function Menu({
       {/* <div className={styles.Menu}> */}
       <img src={selectedMenu?.imageUrl} alt="menu" />
       <div className={styles.MenuName}>{selectedMenu?.name}</div>
-      <div className={styles.MenuPrice}>{selectedMenu?.price}</div>
+      <div className={styles.MenuPrice}>{selectedMenu?.price}원</div>
     </div>
   );
 }

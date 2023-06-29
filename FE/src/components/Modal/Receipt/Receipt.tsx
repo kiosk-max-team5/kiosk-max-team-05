@@ -80,10 +80,14 @@ export function Receipt() {
             ))}
           </div>
           <div className={styles.PaymentContainer}>
-            <div className={styles.Payment}>결제방식: {receiptData.payment}</div>
-            <div className={styles.Payment}>투입금액: {receiptData.inputCost}</div>
-            <div className={styles.Payment}>총 결제금액 {receiptData.totalCost}</div>
-            <div className={styles.Payment}>잔돈 {receiptData.inputCost - receiptData.totalCost}</div>
+            <div className={styles.Payment}>결제방식: {receiptData.payment === "card" ? "카드" : "현금"}</div>
+            <div className={styles.Payment}>투입금액: {receiptData.inputCost}원</div>
+            <div className={styles.Payment}>총 결제금액 {receiptData.totalCost}원</div>
+            {receiptData.payment === "cash" ? (
+              <div className={styles.Payment}>잔돈 {receiptData.inputCost - receiptData.totalCost}원</div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

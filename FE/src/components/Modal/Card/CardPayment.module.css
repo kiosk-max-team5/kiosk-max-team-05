@@ -34,3 +34,36 @@
     transform: rotate(360deg);
   }
 }
+
+.ErrorMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 35px;
+  position: absolute;
+  top: 500px;
+  width: 700px;
+  height: 400px;
+  background-color: white;
+  z-index: 9999;
+  border-radius: 30px;
+}
+
+.ErrorMessage img {
+  width: 150px;
+  height: 150px;
+}
+
+.ErrorText {
+  text-align: center;
+  font-size: 37px;
+  width: 600px;
+  line-height: 50px;
+}
+
+.ErrorText span {
+  color: #7c51a1;
+  font-weight: 700;
+}

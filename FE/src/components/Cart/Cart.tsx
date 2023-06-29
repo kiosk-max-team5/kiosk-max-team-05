@@ -155,7 +155,7 @@ function Menu({
         <div className={styles.MenuCount}>{menu.count}</div>
         <img src={menu?.imageUrl} alt="menu" />
         <div className={styles.MenuName}>{menu?.name}</div>
-        <div className={styles.MenuPrice}>₩ {menu?.price}</div>
+        <div className={styles.MenuPrice}>{menu?.price}원</div>
         <div className={styles.MenuCloseButton} key={index} onClick={handleCloseButton}>
           <span className={styles.MenuCloseButtonText}>X</span>
         </div>
