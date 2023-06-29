@@ -2,7 +2,6 @@ package team.five.kiosk.controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.web.servlet.ResultActions;
 import team.five.kiosk.ControllerTestConfig;
 import team.five.kiosk.dto.ResponseProduct;
 
@@ -34,21 +33,11 @@ class ProductControllerTest extends ControllerTestConfig {
                 .andDo(print());
 
         //then
-<<<<<<< HEAD
         result.andExpect(jsonPath("status").isString());
         result.andExpect(jsonPath("status").value("P0001"));
         result.andExpect(jsonPath("message[0].id").value(1L));
         result.andExpect(jsonPath("message[1].id").value(2L));
-=======
-        result.andExpectAll(
-                jsonPath("$.status").value(200),
-                jsonPath("$.message[0].id").value(1L),
-                jsonPath("$.message[1].id").value(2L),
-                jsonPath("$.message[2].id").value(3L)
 //                jsonPath("$.message").value(toJson(responseProducts))
-        );
-
->>>>>>> feature/test
     }
 
     private static ResponseProduct createResponseProduct(Long id) {

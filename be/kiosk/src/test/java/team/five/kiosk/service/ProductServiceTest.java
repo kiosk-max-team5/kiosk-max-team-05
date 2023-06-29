@@ -8,11 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import team.five.kiosk.IntegrationTestConfig;
 import team.five.kiosk.dto.ResponseProduct;
-<<<<<<< HEAD
 import team.five.kiosk.global.exception.CustomException;
-import team.five.kiosk.repository.ProductRepository;
-=======
->>>>>>> feature/test
 
 import java.util.List;
 
@@ -44,13 +40,8 @@ class ProductServiceTest extends IntegrationTestConfig {
         String wrongName = "coff";
 
         //when
-<<<<<<< HEAD
-        Assertions.assertThatThrownBy(() -> productService.getProducts(wrongName))
-                .isInstanceOf(CustomException.class);
-=======
         assertThatThrownBy(() -> productService.getProducts(wrongName))
-                .isInstanceOf(IllegalStateException.class);
->>>>>>> feature/test
+                .isInstanceOf(CustomException.class);
     }
 
     private void createSalesLog(final int productId, final int count) {

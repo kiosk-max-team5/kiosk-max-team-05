@@ -40,7 +40,8 @@ class OrderControllerTest extends ControllerTestConfig {
 
         //then
         result.andExpectAll(
-                jsonPath("$.status").value("201"),
+                jsonPath("$.status").isString(),
+                jsonPath("$.status").value("O0001"),
                 jsonPath("$.message").value(1L)
         );
     }
