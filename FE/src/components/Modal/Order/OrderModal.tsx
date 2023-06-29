@@ -20,6 +20,7 @@ export function OrderModal() {
   const [isOptionsComplete, setIsOptionsComplete] = useState<boolean>(false);
   const contextValue = useContext(ModalContext)!;
   const {
+    currentCategory,
     setModalState,
     modalState,
     orderCount,
@@ -60,6 +61,7 @@ export function OrderModal() {
   return modalState === "order" ? (
     <div className={styles.OrderModal}>
       <CloseButton onClick={handleCloseButtonClick} />
+
       <div className={styles.Upper}>
         <Menu
           orderInfo={orderInfo}
@@ -70,17 +72,20 @@ export function OrderModal() {
         <div className={styles.Options}>
           <div className={styles.OptionButtons}>
             <SizeButtons
+              currentCategory={currentCategory}
               orderInfo={orderInfo}
               setIsOptionsComplete={setIsOptionsComplete}
               onMouseUp={setSelectedMenu}
               selectedMenu={selectedMenu}
             />
-            <TempButtons
-              orderInfo={orderInfo}
-              setIsOptionsComplete={setIsOptionsComplete}
-              onMouseUp={setSelectedMenu}
-              selectedMenu={selectedMenu}
-            />
+            {currentCategory !== 3 && (
+              <TempButtons
+                orderInfo={orderInfo}
+                setIsOptionsComplete={setIsOptionsComplete}
+                onMouseUp={setSelectedMenu}
+                selectedMenu={selectedMenu}
+              />
+            )}
           </div>
           <QuantityControl
             orderInfo={orderInfo}
@@ -228,11 +233,13 @@ function SizeButtons({
   selectedMenu,
   onMouseUp,
   setIsOptionsComplete,
+  currentCategory,
 }: {
   orderInfo: OrderInfo;
   selectedMenu: selectedMenus | null;
   onMouseUp: (menuInfo: selectedMenus | null) => void;
   setIsOptionsComplete: (isOptionsComplete: boolean) => void;
+  currentCategory: number;
 }) {
   const [selectedButtonId, setSelectedButtonId] = useState<string | null>(null);
 
@@ -241,7 +248,7 @@ function SizeButtons({
     if (selectedMenu && selectedMenu.imageUrl && selectedMenu.name) {
       const updatedMenu: selectedMenus = { ...selectedMenu, size: id };
       onMouseUp(updatedMenu);
-      if (selectedMenu.temperature) {
+      if (selectedMenu.temperature || currentCategory === 3) {
         setIsOptionsComplete(true);
       }
     }
@@ -303,6 +310,7 @@ function TempButtons({
         isSelected={selectedButtonId === "hot"}
         onClick={() => handleOptionButtonClick("hot")}
       />
+
       <Button
         id="cold"
         text="차가운것"
