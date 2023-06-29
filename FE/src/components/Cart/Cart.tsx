@@ -61,7 +61,7 @@ export function Cart() {
   }, [setIsOpenCart, time, setCartMenuList, isOpenCart, modalState]);
 
   useEffect(() => {
-    time.current = 5000;
+    time.current = 30;
     setTimeDisplay(time.current);
   }, [cartMenuList]);
 
@@ -82,7 +82,11 @@ export function Cart() {
       <div className={styles.ButtonContainer}>
         <Button text="전체취소" className="CancelButton" onMouseUp={handleCancelMouseUp} />
         <Button text="결제하기" className="PaymentButton" onMouseUp={handlePaymentMouseUp} />
-        {modalState === "payment" ? null : <div className={styles.CountMessages}>{timeDisplay}초남음</div>}
+        {modalState === "payment" ? null : (
+          <div className={styles.CountMessages}>
+            <span>{timeDisplay}</span>초 뒤에 장바구니 창이 닫힙니다.
+          </div>
+        )}
       </div>
     </div>
   ) : null;
@@ -123,7 +127,7 @@ function Menu({
   selectedMenu: selectedMenus | null;
 }) {
   const [menuAnimation, setMenuAnimation] = useState("");
-
+  const [isZoomed, setIsZoomed] = useState(false);
   const handleCloseButton = () => {
     setMenuAnimation("fade-enter");
     setTimeout(() => {
@@ -140,6 +144,13 @@ function Menu({
     setCartMenuList(updatedCart);
   };
 
+  const handleMouseDownMenu = () => {
+    setIsZoomed(true);
+  };
+  const handleMouseUpMenu = () => {
+    setIsZoomed(false);
+  };
+
   return (
     //menuAnimation도 추가로 넣어줘야함
     //<div className={`${styles.MenuArea} ${styles[animationClass]}`}>
@@ -148,14 +159,20 @@ function Menu({
         {selectedMenu?.temperature}
       </div> */}
 
-      <div className={`${styles.Menu} ${menuAnimation ? styles[menuAnimation] : ""}`}>
-        {/* <div className={styles.Menu}> */}
+      <div
+        className={`${styles.Menu} ${menuAnimation ? styles[menuAnimation] : ""} ${isZoomed ? styles.zoomed : ""}`}
+        onMouseDown={handleMouseDownMenu}
+        onMouseUp={handleMouseUpMenu}>
         {menu?.temperature === "hot" ? <div className={styles.Hot}>HOT</div> : ""}
         <div className={styles.MenuSize}>{menu.size === "big" ? "LARGE" : "SMALL"}</div>
         <div className={styles.MenuCount}>{menu.count}</div>
-        <img src={menu?.imageUrl} alt="menu" />
-        <div className={styles.MenuName}>{menu?.name}</div>
-        <div className={styles.MenuPrice}>{menu?.price}원</div>
+        <div className={styles.CartMenuContainer}>
+          <div className={styles.imgContainer}>
+            <img src={menu?.imageUrl} alt="menu" />
+          </div>
+          <div className={styles.MenuName}>{menu?.name}</div>
+          <div className={styles.MenuPrice}>{menu?.price}원</div>
+        </div>
         <div className={styles.MenuCloseButton} key={index} onClick={handleCloseButton}>
           <span className={styles.MenuCloseButtonText}>X</span>
         </div>

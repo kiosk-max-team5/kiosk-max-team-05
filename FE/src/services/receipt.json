@@ -11,7 +11,7 @@
         "count": 1
       }
     ],
-    "payments": "현금",
+    "payment": "card",
     "inputCost": 10000,
     "totalCost": 9500
   }

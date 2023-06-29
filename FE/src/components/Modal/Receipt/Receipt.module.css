@@ -40,6 +40,8 @@
   height: auto; /* change this line */
   min-width: 500px; /* add this line */
   min-height: 500px;
+  gap: 30px;
+  margin: 50px 0;
 
   padding: 30px;
 }
@@ -50,7 +52,7 @@
   align-items: center;
   position: relative;
   font-size: 50px;
-  height: 100px;
+  /* height: 100px; */
   /* margin: 25px; */
   order: 1;
 }
@@ -62,10 +64,9 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  width: 400px;
+  width: 350px;
 
   order: 2;
-  padding: 15px 30px;
 }
 
 .MenuContainer {
@@ -77,12 +78,23 @@
   max-height: 360px;
   overflow-y: scroll;
   gap: 10px;
-  font-size: 30px;
-  font-weight: 300;
+  font-size: 35px;
+  font-weight: 400;
 
   &::-webkit-scrollbar {
     display: none;
   }
+}
+.PaymentContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #fff;
+  font-size: 27px;
+  font-weight: 200;
+  gap: 10px;
 }
 
 .Menu {
@@ -90,19 +102,9 @@
   flex-shrink: 0;
 }
 
-.PaymentContainer {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 400px;
-  background-color: #fff;
-  font-size: 35px;
-  font-weight: 200;
-  gap: 10px;
-}
-
 .MessagesContainer {
+  position: relative;
+  top: -100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,9 +116,20 @@
 }
 
 .Messages {
-  font-size: 45px;
+  text-align: center;
+  width: 680px;
+  line-height: 50px;
+  font-size: 37px;
+  font-weight: 300;
+}
+
+span {
+  color: #7c51a1;
+  font-weight: 700;
 }
 
 .Timer {
-  font-size: 40px;
+  color: #7c51a1;
+  font-size: 35px;
+  font-weight: 700;
 }
