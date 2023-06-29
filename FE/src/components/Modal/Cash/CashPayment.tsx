@@ -55,12 +55,12 @@ export function CashPayment() {
       console.log("응답받은데이타");
       console.log(data);
 
-      const messageFromResponse = data.message;
+      const orderIdFromResponse = data.message;
       console.log("응답받은ID");
-      console.log(messageFromResponse);
+      console.log(orderIdFromResponse);
 
-      setPaidOrderIDList(messageFromResponse);
-
+      // setPaidOrderIDList(messageFromResponse);
+      setPaidOrderIDList((prev) => [...prev, orderIdFromResponse]);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -68,7 +68,6 @@ export function CashPayment() {
     setIsDimOpen(false);
     setModalState("receipt");
   };
-
 
   return modalState === "cashPayment" ? (
     <div className={styles.CashPayment}>
