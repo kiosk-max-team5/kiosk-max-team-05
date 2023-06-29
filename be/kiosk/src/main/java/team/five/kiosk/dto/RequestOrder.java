@@ -2,6 +2,7 @@ package team.five.kiosk.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import team.five.kiosk.domain.Order;
 import team.five.kiosk.domain.OrderDetail;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@NoArgsConstructor
 public class RequestOrder {
     private String payment;
 
