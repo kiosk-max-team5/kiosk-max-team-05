@@ -79,7 +79,8 @@ export function PaymentModal() {
       console.log(orderIdFromResponse);
 
       // 주문 ID를 상태로 저장
-      setPaidOrderIDList(orderIdFromResponse);
+      // setPaidOrderIDList([...orderIdFromResponse]);
+      setPaidOrderIDList((prev) => [...prev, orderIdFromResponse]);
 
       setIsDimOpen(false);
       setModalState("receipt");
