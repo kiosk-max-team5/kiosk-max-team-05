@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 
 import styles from "./MenuArea.module.css";
-import ModalContext from "../../contexts/ModalContext";
+import ModalContext, { selectedMenus } from "../../contexts/ModalContext";
 
 export interface Menus {
   imgUrl: string;
   name: string;
   price: number;
 }
+
+
 
 type MenuAreaProps = {
   menus: Menus[];
@@ -34,7 +36,7 @@ export function MenuArea({ menus, animationClass, onTransitionEnd }: MenuAreaPro
 }
 
 type MenuProps = {
-  menu: Menus;
+  menu: selectedMenus;
   index: number;
 };
 
