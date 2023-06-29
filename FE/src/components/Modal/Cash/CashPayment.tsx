@@ -67,6 +67,10 @@ export function CashPayment() {
 
     setIsDimOpen(false);
     setModalState("receipt");
+    
+    const currentCount = localStorage.getItem("count");
+    const newCount = currentCount ? parseInt(currentCount) + 1 : 1;
+    localStorage.setItem("count", newCount.toString());
   };
 
   return modalState === "cashPayment" ? (

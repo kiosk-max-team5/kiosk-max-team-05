@@ -15,15 +15,6 @@
   }
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .Menu {
   display: flex;
   position: relative;
@@ -63,32 +54,41 @@
   color: rgb(55, 55, 55);
 }
 
-.fade-enter {
+.fade-out {
   transform: translateY(150%);
-  opacity: 0;
-  transition: opacity 800ms, transform 800ms;
+  opacity: 1;
+  animation: fadeOut 1s;
 }
 
-.fade-enter-active {
+@keyframes fadeOut {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150%);
+    opacity: 0;
+  }
+}
+
+.fade-mount {
   transform: translateY(0);
   opacity: 1;
+  animation: fadeMount 1s;
 }
 
-.fade-exit {
-  opacity: 1;
-  animation: fadeIn 1s;
-}
-
-.fade {
-  transform: translateY(0);
-  opacity: 1;
-  animation: fadeIn 2s;
-}
-
-.fade-exit-active {
-  transform: translateY(150%);
-  opacity: 0;
-  transition: opacity 500ms, transform 500ms;
+@keyframes fadeMount {
+  0% {
+    transform: translateY(-150%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }
 
 .StarMark {
