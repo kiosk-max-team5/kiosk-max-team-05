@@ -32,7 +32,7 @@ class ProductServiceTest {
         List<ResponseProduct> products = productService.getProducts("coffee");
 
         //then
-        Assertions.assertThat(products.size()).isEqualTo(4);
+        Assertions.assertThat(products.size()).isEqualTo(9);
     }
 
     @Test
