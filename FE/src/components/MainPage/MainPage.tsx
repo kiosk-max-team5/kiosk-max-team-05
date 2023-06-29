@@ -95,6 +95,7 @@ export function MainPage() {
       ) : (
         // <MenuArea animationClass={animationClass} menus={menuData} />
         <div className={styles.MainImage} onClick={handleClickMainImage}>
+          <div className={styles.MainText}>주문하시려면 화면을 터치해주세요</div>
           <img src="/assets/logo.svg" alt="main" />
         </div>
       )}

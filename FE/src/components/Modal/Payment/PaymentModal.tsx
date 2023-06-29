@@ -10,7 +10,7 @@ interface YNProps {
 export function PaymentModal() {
   const [isClosePaymentModal, setIsClosePaymentModal] = useState(false);
   const contextValue = useContext(ModalContext)!;
-  const { orderInfo, cartMenuList, setIsDimOpen, setModalState, modalState } = contextValue;
+  const { cartMenuList, setIsDimOpen, setModalState, modalState } = contextValue;
 
   const handleCloseButtonClick = () => {
     setIsClosePaymentModal(true);

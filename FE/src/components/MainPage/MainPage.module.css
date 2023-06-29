@@ -11,6 +11,17 @@
   animation: fadeIn 1s;
 }
 
+.MainText {
+  top: 110px;
+  width: 500px;
+  color: white;
+  display: flex;
+  position: absolute;
+  font-size: 60px;
+  text-align: center;
+  line-height: 1.5;
+}
+
 .MainImage {
   display: flex;
   justify-content: center;
