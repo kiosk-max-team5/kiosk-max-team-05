@@ -15,6 +15,10 @@ export function Receipt() {
     const fetchReceipt = async () => {
       try {
         const orderId = paidOrderIDList[paidOrderIDList.length - 1];
+        console.log("응답받은ID리스트");
+        console.log(paidOrderIDList);
+        console.log("apiID로 넣을 값");
+        console.log(orderId);
 
         const response = await fetch(`/api/v1/orders/${orderId}`);
 
@@ -23,7 +27,12 @@ export function Receipt() {
         }
 
         const data = await response.json();
+        console.log("영수증fetch데이터");
+        console.log(data);
+
         const receiptData = data.message;
+        console.log("영수증에뿌릴영수증값");
+        console.log(receiptData);
 
         setReceiptData(receiptData);
       } catch (error) {
