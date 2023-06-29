@@ -3,8 +3,8 @@ import styles from "./Receipt.module.css";
 import ModalContext from "../../../contexts/ModalContext";
 
 export function Receipt() {
-  const initialData = { orderNumber: 0, orderedProducts: [], payment: "", inputCost: 0, totalCost: 0 };
-  const [time, setTime] = useState<number>(555);
+  const initialData = { orderNumber: 0, orderProducts: [], payment: "", inputCost: 0, totalCost: 0 };
+  const [time, setTime] = useState<number>(10);
   const [receiptData, setReceiptData] = useState(initialData);
   const contextValue = useContext(ModalContext)!;
 
@@ -75,7 +75,7 @@ export function Receipt() {
             {/* {OrderMenuList.map((menu, index) => (
               <OrderMenu name={menu.ProductName} count={menu.count} key={index} />
             ))} */}
-            {receiptData.orderedProducts.map((menu: Menu, index) => (
+            {receiptData.orderProducts.map((menu: Menu, index) => (
               <OrderMenu name={menu.productName} count={menu.count} key={index} />
             ))}
           </div>
