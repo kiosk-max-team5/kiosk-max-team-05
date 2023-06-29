@@ -12,7 +12,7 @@
 }
 
 .MainText {
-  top: 110px;
+  top: 125px;
   width: 500px;
   color: white;
   display: flex;
@@ -30,6 +30,7 @@
   width: 1000px;
   height: 1500px;
   background-color: #7c51a1;
+  font-weight: 600;
   /* background-image: url("https://www.cleaneatingkitchen.com/wp-content/uploads/2023/01/Starbucks-Strongest-Coffee-Vertical-Hero-3.jpg"); */
   /* background-size: 100% auto;
   background-repeat: no-repeat;

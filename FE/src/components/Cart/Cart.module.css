@@ -282,3 +282,7 @@
 .zoomed {
   transform: scale(1.1);
 }
+
+.MenuZoomed {
+  transform: scale(1.1) rotate(360deg);
+}

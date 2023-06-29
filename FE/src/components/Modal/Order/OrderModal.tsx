@@ -260,14 +260,14 @@ function SizeButtons({
     <div className={styles.Buttons}>
       <Button
         id="big"
-        text="큰거"
+        text="LARGE"
         color="#c2abd6"
         isSelected={selectedButtonId === "big"}
         onClick={() => handleOptionButtonClick("big")}
       />
       <Button
         id="small"
-        text="작은거"
+        text="SMALL"
         color="#c2abd6"
         isSelected={selectedButtonId === "small"}
         onClick={() => handleOptionButtonClick("small")}
@@ -305,7 +305,7 @@ function TempButtons({
     <div className={styles.Buttons}>
       <Button
         id="hot"
-        text="뜨거운것"
+        text="HOT"
         color="#7c51a1"
         isSelected={selectedButtonId === "hot"}
         onClick={() => handleOptionButtonClick("hot")}
@@ -313,7 +313,7 @@ function TempButtons({
 
       <Button
         id="cold"
-        text="차가운것"
+        text="ICE"
         color="#7c51a1"
         isSelected={selectedButtonId === "cold"}
         onClick={() => handleOptionButtonClick("cold")}

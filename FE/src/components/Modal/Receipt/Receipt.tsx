@@ -4,7 +4,7 @@ import ModalContext from "../../../contexts/ModalContext";
 
 export function Receipt() {
   const initialData = { orderNumber: 0, orderProducts: [], payment: "", inputCost: 0, totalCost: 0 };
-  const [time, setTime] = useState<number>(555);
+  const [time, setTime] = useState<number>(10);
   const [receiptData, setReceiptData] = useState(initialData);
   const contextValue = useContext(ModalContext)!;
 
