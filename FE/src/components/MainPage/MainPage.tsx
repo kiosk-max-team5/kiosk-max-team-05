@@ -64,9 +64,9 @@ export function MainPage() {
     const fetchMenuData = async () => {
       if (currentCategory >= 0) {
         try {
-          // const response = await fetch(`http://localhost:8080/${endpoint.current[currentCategory]}`);
+          const response = await fetch(`http://localhost:8080/${endpoint.current[currentCategory]}`);
 
-          const response = await fetch(`/api/v1/products?category=${endpoint.current[currentCategory]}`);
+          // const response = await fetch(`/api/v1/products?category=${endpoint.current[currentCategory]}`);
 
           const data = await response.json();
           console.log("원본데이터");

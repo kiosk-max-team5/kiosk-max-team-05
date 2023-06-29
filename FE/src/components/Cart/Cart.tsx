@@ -151,7 +151,7 @@ function Menu({
       <div className={`${styles.Menu} ${menuAnimation ? styles[menuAnimation] : ""}`}>
         {/* <div className={styles.Menu}> */}
         {menu?.temperature === "hot" ? <div className={styles.Hot}>HOT</div> : ""}
-        <div className={styles.MenuSize}>{menu.size === "big" ? "L" : "S"}</div>
+        <div className={styles.MenuSize}>{menu.size === "big" ? "LARGE" : "SMALL"}</div>
         <div className={styles.MenuCount}>{menu.count}</div>
         <img src={menu?.imageUrl} alt="menu" />
         <div className={styles.MenuName}>{menu?.name}</div>
