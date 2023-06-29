@@ -9,7 +9,7 @@ export function CashPayment() {
 
   const orderAmount = 9000;
 
-  const { setModalState, setIsDimOpen, modalState } = contextValue;
+  const { setModalState, cartMenuList, setIsDimOpen, modalState } = contextValue;
 
   const handleClickPriceButton = (price: number) => {
     if (orderAmount < paidAmount + price) {
@@ -18,8 +18,44 @@ export function CashPayment() {
     setPaidAmount(paidAmount + price);
   };
 
-  const handleClickPaymentButton = () => {
+  const handleClickPaymentButton = async () => {
     if (!isPaymentComplete) return;
+
+    const orderPrice = cartMenuList.reduce((acc, cur) => {
+      return acc + cur.price * cur.count;
+    }, 0);
+    const postData = {
+      payment: "cash",
+      totalCost: orderPrice,
+      inputCost: paidAmount,
+      orderProducts: cartMenuList.map((menu) => ({
+        productId: menu.id,
+        count: menu.count,
+        size: menu.size,
+        temperature: menu.temperature,
+      })),
+    };
+    console.log(postData);
+    console.log(JSON.stringify(postData));
+
+    try {
+      const response = await fetch("/api/v1/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
     setIsDimOpen(false);
     setModalState("receipt");
   };
