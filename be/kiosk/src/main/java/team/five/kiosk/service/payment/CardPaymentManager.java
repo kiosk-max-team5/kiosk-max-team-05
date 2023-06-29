@@ -23,11 +23,14 @@ public class CardPaymentManager implements PaymentManager {
     private int waitPaymentLoading() {
         final int randomDelayTime = MIN_DELAY_TIME + (int) Math.floor(Math.random() * MAX_RANDOM_TIME);
 
+        long startTime = System.currentTimeMillis();
         try {
-            Thread.sleep(randomDelayTime, 1000);
+            Thread.sleep(randomDelayTime * 1000);
         } catch (InterruptedException e) {
             logger.info("결제 지연 시간 초과: " + randomDelayTime);
         }
+        long endTime = System.currentTimeMillis();
+        logger.info("결제 시간 : " + (endTime - startTime)/1000);
 
         return randomDelayTime;
     }
