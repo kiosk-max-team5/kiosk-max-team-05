@@ -103,7 +103,8 @@ export function MainPage() {
       if (currentCategory >= 0) {
         try {
           // const response = await fetch(`http://localhost:8080/${endpoint.current[currentCategory]}`);
-          const response = await fetch("/api/v1/products?category=coffee");
+          // const response = await fetch("/api/v1/products?category=coffee");
+          const response = await fetch(`/api/v1/products?category=${endpoint.current[currentCategory]}`);
           // const response = await fetch(`http://52.78.214.187:8080/api/v1/products?category=coffee`);
 
           const data = await response.json();
