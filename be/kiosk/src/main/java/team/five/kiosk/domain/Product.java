@@ -1,10 +1,8 @@
 package team.five.kiosk.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class Product {
 
     private Long id;
@@ -13,7 +11,8 @@ public class Product {
     private int price;
     private String imageUrl;
 
-    public Product(final Long categoryId, final String name, final int price, final String imageUrl) {
+    public Product(Long id, final Long categoryId, final String name, final int price, final String imageUrl) {
+        this.id = id;
         this.categoryId = categoryId;
         this.name = name;
         this.price = price;
