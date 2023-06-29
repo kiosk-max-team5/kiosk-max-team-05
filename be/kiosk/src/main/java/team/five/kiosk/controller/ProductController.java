@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team.five.kiosk.dto.ResponseProduct;
-import team.five.kiosk.global.ApiResponse;
+import team.five.kiosk.global.common.ApiResponse;
+import team.five.kiosk.global.common.StatusCode;
 import team.five.kiosk.service.ProductService;
 
 import java.util.List;
@@ -23,6 +24,6 @@ public class ProductController {
     public ResponseEntity<ApiResponse<List<ResponseProduct>>> getProducts(@RequestParam String category) {
         List<ResponseProduct> products = productService.getProducts(category);
 
-        return ResponseEntity.ok(ApiResponse.success("200", products));
+        return ResponseEntity.ok(ApiResponse.success(StatusCode.PRODUCT_LIST_FETCH_SUCCESS.getCustomStatus(), products));
     }
 }

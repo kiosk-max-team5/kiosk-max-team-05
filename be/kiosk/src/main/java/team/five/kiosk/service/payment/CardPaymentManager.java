@@ -1,7 +1,9 @@
-package team.five.kiosk.global.payment;
+package team.five.kiosk.service.payment;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import team.five.kiosk.global.common.StatusCode;
+import team.five.kiosk.global.exception.CustomException;
 
 public class CardPaymentManager implements PaymentManager {
     private static final Logger logger = LoggerFactory.getLogger(CardPaymentManager.class);
@@ -14,7 +16,7 @@ public class CardPaymentManager implements PaymentManager {
         final int delayedTime = waitPaymentLoading();
 
         if (delayedTime > MAX_DELAY_TIME) {
-            throw new IllegalArgumentException("결제 시간 초과");
+            throw new CustomException(StatusCode.PAYMENT_TIME_OUT);
         }
     }
 
