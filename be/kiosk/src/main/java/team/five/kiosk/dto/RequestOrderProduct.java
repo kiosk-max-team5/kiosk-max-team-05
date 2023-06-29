@@ -1,10 +1,9 @@
 package team.five.kiosk.dto;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class RequestOrderProduct {
     private Long productId;
 

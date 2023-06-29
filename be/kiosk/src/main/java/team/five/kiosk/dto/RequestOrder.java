@@ -1,20 +1,43 @@
 package team.five.kiosk.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import team.five.kiosk.domain.Order;
+import team.five.kiosk.domain.OrderDetail;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
-@AllArgsConstructor
 public class RequestOrder {
     private String payment;
 
-    private int totalPrice;
+    private int totalCost;
 
-    @JsonIgnore(value = false)
-    private int inputPrice;
+    private int inputCost;
 
     private List<RequestOrderProduct> orderProducts;
+
+    public Order toOrder(final Long paymentId) {
+        return Order.builder()
+                .paymentId(paymentId)
+                .totalCost(totalCost)
+                .inputCost(inputCost)
+                .build();
+    }
+
+    public List<OrderDetail> toOrderDetails(final Long orderId) {
+        return orderProducts.stream()
+                .map(orderProduct -> toOrderDetails(orderId, orderProduct))
+                .collect(Collectors.toList());
+    }
+
+    private static OrderDetail toOrderDetails(final Long orderId, final RequestOrderProduct orderProduct) {
+        return OrderDetail.builder()
+                .orderId(orderId)
+                .productId(orderProduct.getProductId())
+                .size(orderProduct.getSize())
+                .temperature(orderProduct.getTemperature())
+                .count(orderProduct.getCount())
+                .build();
+    }
 }
