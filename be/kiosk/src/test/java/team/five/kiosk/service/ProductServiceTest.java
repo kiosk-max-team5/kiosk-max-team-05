@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import team.five.kiosk.dto.ResponseProduct;
+import team.five.kiosk.global.exception.CustomException;
 import team.five.kiosk.repository.ProductRepository;
 
 import java.util.List;
@@ -43,7 +44,7 @@ class ProductServiceTest {
 
         //when
         Assertions.assertThatThrownBy(() -> productService.getProducts(wrongName))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(CustomException.class);
     }
 
     private void createSalesLog(final int productId, final int count) {
