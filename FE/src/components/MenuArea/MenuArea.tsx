@@ -19,13 +19,16 @@ export function MenuArea({ menus, animationClass, onTransitionEnd }: MenuAreaPro
   // console.log(animationClass);
   // console.log("페이드엔터가 아니야" + (animationClass !== "fade-enter"));
   const handleTransitionEnd = () => {
-    onTransitionEnd();
+    if (animationClass === "fade-out") {
+      onTransitionEnd();
+    }
     // console.log("트랜지션엔드끗");
   };
   return (
     <div
       className={`${styles.MenuArea} ${animationClass ? styles[animationClass] : ""}`}
-      onTransitionEnd={handleTransitionEnd}>
+      onAnimationEnd={handleTransitionEnd}>
+      {/* onTransitionEnd={handleTransitionEnd}> */}
       {menus.map((menu, index) => (
         <Menu menu={menu} key={index} index={index} />
       ))}

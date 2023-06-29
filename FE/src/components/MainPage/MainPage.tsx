@@ -19,7 +19,7 @@ export function MainPage() {
   const indexRef = useRef(0);
   const [activeTab, setActiveTab] = useState(-1);
   // const [currentCategory, setCurrentCategory] = useState(-1);
-  const [animationClass, setAnimationClass] = useState("");
+  const [animationClass, setAnimationClass] = useState("fade-mount");
   const [isTransitionEnd, setIsTransitionEnd] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
   // const [categories, setCategories] = useState([]);
@@ -28,7 +28,7 @@ export function MainPage() {
 
   const handleTabClick = (index: number) => {
     if (index === currentCategory) return;
-    setAnimationClass("fade-enter");
+    setAnimationClass("fade-out");
     indexRef.current = index;
   };
 
@@ -46,7 +46,7 @@ export function MainPage() {
   }, [isFetched]);
 
   useEffect(() => {
-    setAnimationClass("fade-exit");
+    // setAnimationClass("fade-mount");
     setIsTransitionEnd(false);
   }, [activeTab]);
 
@@ -77,8 +77,8 @@ export function MainPage() {
           console.log(menuData);
 
           setMenuData(menuData);
-          setAnimationClass("fade");
           setIsFetched(true);
+          setAnimationClass("fade-mount");
         } catch (error) {
           console.error("Error fetching coffee data:", error);
         }

@@ -6,6 +6,7 @@ export function Receipt() {
   const initialData = { orderNumber: 0, orderProducts: [], payment: "", inputCost: 0, totalCost: 0 };
   const [time, setTime] = useState<number>(10);
   const [receiptData, setReceiptData] = useState(initialData);
+  const [orderNumber, setOrderNumber] = useState<number>(0);
   const contextValue = useContext(ModalContext)!;
 
   const { paidOrderIDList, modalState } = contextValue;

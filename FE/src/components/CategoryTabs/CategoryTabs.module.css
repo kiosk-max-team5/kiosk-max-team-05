@@ -3,6 +3,7 @@
   height: 150px;
   border: 1px solid #7c51a1;
   overflow: hidden;
+  z-index: 5;
 }
 
 .Tab {
@@ -17,6 +18,7 @@
   flex-shrink: 0;
   color: rgb(99, 99, 99);
   cursor: pointer;
+  background-color: white;
 }
 
 @keyframes fadeIn {
