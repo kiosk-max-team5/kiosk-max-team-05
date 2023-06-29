@@ -42,6 +42,9 @@ public class OrderService {
         List<OrderDetail> orderDetails = requestOrder.toOrderDetails(orderId);
         orderRepository.createAllOrderDetail(orderDetails);
 
+        // 판매 기록
+        orderRepository.createSalesLog(orderDetails);
+
         return orderId;
     }
 

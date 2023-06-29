@@ -10,6 +10,6 @@ spring:
       on-profile: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://my-rds-instance.cbacrydrinw6.ap-northeast-2.rds.amazonaws.com:3306/kiosk_rds?useSSL=false
+    url: jdbc:mysql://my-rds-instance.cbacrydrinw6.ap-northeast-2.rds.amazonaws.com:3306/kiosk_rds?useSSL=false&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
     username: team5
     password: kiosk1234

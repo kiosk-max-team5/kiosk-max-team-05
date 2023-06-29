@@ -88,4 +88,11 @@ public class OrderRepository {
                 rs.getInt("total_cost")
         ));
     }
+
+    public void createSalesLog(final List<OrderDetail> orderDetails) {
+        String sql = "insert into sales_log (product_id, count) " +
+                " values(:productId, :count)";
+
+        jdbcTemplate.batchUpdate(sql, SqlParameterSourceUtils.createBatch(orderDetails));
+    }
 }
