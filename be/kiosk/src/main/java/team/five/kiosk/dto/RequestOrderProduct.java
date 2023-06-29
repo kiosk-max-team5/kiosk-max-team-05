@@ -1,6 +1,7 @@
 package team.five.kiosk.dto;
 
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -12,4 +13,12 @@ public class RequestOrderProduct {
     private String size;
 
     private String temperature;
+
+    @Builder
+    public RequestOrderProduct(Long productId, int count, String size, String temperature) {
+        this.productId = productId;
+        this.count = count;
+        this.size = size;
+        this.temperature = temperature;
+    }
 }
