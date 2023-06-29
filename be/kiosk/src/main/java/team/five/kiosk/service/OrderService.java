@@ -3,12 +3,17 @@ package team.five.kiosk.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import team.five.kiosk.dao.OrderProductDAO;
+import team.five.kiosk.dao.ReceiptDAO;
 import team.five.kiosk.domain.Order;
 import team.five.kiosk.domain.OrderDetail;
 import team.five.kiosk.domain.Payment;
 import team.five.kiosk.dto.RequestOrder;
+import team.five.kiosk.dto.ResponseOrderProduct;
+import team.five.kiosk.dto.ResponseReceipt;
 import team.five.kiosk.repository.OrderRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional(readOnly = true)
@@ -38,5 +43,12 @@ public class OrderService {
         orderRepository.createAllOrderDetail(orderDetails);
 
         return orderId;
+    }
+
+    public ResponseReceipt findOrderById(Long id) {
+        List<OrderProductDAO> orderProductDAOS = orderRepository.findProductNameAndCountByOrderId(id);
+
+        ReceiptDAO receiptDAO = orderRepository.findOrderByOrderId(id, orderProductDAOS);
+        return ResponseReceipt.from(receiptDAO);
     }
 }
