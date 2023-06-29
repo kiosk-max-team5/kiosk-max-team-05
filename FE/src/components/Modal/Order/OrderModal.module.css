@@ -216,8 +216,12 @@ margin: 25px 25px; */
   font-size: 25px;
   font-weight: 700;
   color: white;
-  background-color: #7c51a1;
+  background-color: #c0abd2;
   cursor: pointer;
+}
+
+.Completed {
+  background-color: #7c51a1;
 }
 
 .fade-enter {
