@@ -40,7 +40,7 @@ export function PaymentModal() {
       return acc + cur.price * cur.count;
     }, 0);
     const postData = {
-      payment: "카드",
+      payment: "card",
       totalCost: orderPrice,
       inputCost: orderPrice,
       orderProducts: cartMenuList.map((menu) => ({
@@ -51,6 +51,7 @@ export function PaymentModal() {
       })),
     };
     console.log(postData);
+    console.log(JSON.stringify(postData));
 
     try {
       const response = await fetch("/api/v1/orders", {
