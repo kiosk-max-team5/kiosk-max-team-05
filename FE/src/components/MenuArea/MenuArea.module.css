@@ -66,7 +66,7 @@
 .fade-enter {
   transform: translateY(150%);
   opacity: 0;
-  transition: opacity 1200ms, transform 700ms;
+  transition: opacity 800ms, transform 800ms;
 }
 
 .fade-enter-active {

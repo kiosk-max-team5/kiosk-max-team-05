@@ -160,7 +160,9 @@ function Menu({
       </div> */}
 
       <div
-        className={`${styles.Menu} ${menuAnimation ? styles[menuAnimation] : ""} ${isZoomed ? styles.zoomed : ""}`}
+        className={`${styles.Menu} ${menuAnimation ? styles[menuAnimation] : ""} ${
+          isZoomed ? `${styles.Menu} ${styles.zoomed}` : ""
+        }`}
         onMouseDown={handleMouseDownMenu}
         onMouseUp={handleMouseUpMenu}>
         {menu?.temperature === "hot" ? <div className={styles.Hot}>HOT</div> : ""}
