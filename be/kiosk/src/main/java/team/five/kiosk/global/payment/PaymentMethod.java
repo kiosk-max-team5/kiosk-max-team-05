@@ -1,6 +1,8 @@
 package team.five.kiosk.global.payment;
 
 import team.five.kiosk.domain.Payment;
+import team.five.kiosk.global.common.StatusCode;
+import team.five.kiosk.global.exception.CustomException;
 
 import java.util.Arrays;
 
@@ -31,6 +33,6 @@ public enum PaymentMethod {
         return Arrays.stream(values())
                 .filter(paymentMethod -> paymentMethod.name.equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("지원하지 않는 결제 수단"));
+                .orElseThrow(() -> new CustomException(StatusCode.NOT_FOUND_PAYMENT));
     }
 }

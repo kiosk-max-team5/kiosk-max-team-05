@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import team.five.kiosk.dto.RequestOrder;
 import team.five.kiosk.dto.ResponseReceipt;
-import team.five.kiosk.global.ApiResponse;
+import team.five.kiosk.global.common.ApiResponse;
 import team.five.kiosk.service.OrderService;
 
 @RequiredArgsConstructor

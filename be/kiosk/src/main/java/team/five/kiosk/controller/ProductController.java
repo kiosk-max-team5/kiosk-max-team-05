@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team.five.kiosk.dto.ResponseProduct;
-import team.five.kiosk.global.ApiResponse;
+import team.five.kiosk.global.common.ApiResponse;
 import team.five.kiosk.service.ProductService;
 
 import java.util.List;

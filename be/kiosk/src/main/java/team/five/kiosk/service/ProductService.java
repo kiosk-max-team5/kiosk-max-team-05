@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.five.kiosk.domain.Product;
 import team.five.kiosk.dto.ResponseProduct;
+import team.five.kiosk.global.common.StatusCode;
+import team.five.kiosk.global.exception.CustomException;
 import team.five.kiosk.repository.ProductRepository;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class ProductService {
 
     private void checkCategory(final String category) {
         if (!productRepository.isExistCategory(category)) {
-            throw new IllegalStateException("카테고리 명이 잘못되었습니다.");
+            throw new CustomException(StatusCode.WRONG_CATEGORY_NAME);
         }
     }
 }
