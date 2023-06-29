@@ -9,11 +9,9 @@ interface YNProps {
 
 export function PaymentModal() {
   const [isClosePaymentModal, setIsClosePaymentModal] = useState(false);
-  const contextValue = useContext(ModalContext);
-  if (!contextValue) {
-    throw new Error("ModalContext is not provided");
-  }
-  const { setIsDimOpen, setModalState, modalState } = contextValue;
+  const contextValue = useContext(ModalContext)!;
+
+  const { orderInfo, cartMenuList, setIsDimOpen, setModalState, modalState } = contextValue;
 
   const handleCloseButtonClick = () => {
     setIsClosePaymentModal(true);
@@ -39,8 +37,16 @@ export function PaymentModal() {
   const paymentTime = getRandomNumber();
 
   const handleCardPaymentButtonClick = () => {
-    setModalState("cardPayment");
+    console.log(orderInfo);
+    console.log(cartMenuList);
+    // const postData = {
+    //   payments: "카드",
+    //   orderPrice:
+    //   inputPrice: 9500,
+    //   orderProducts: cartMenuList,
+    // };
 
+    setModalState("cardPayment");
     setTimeout(() => {
       setIsDimOpen(false);
       setModalState("receipt");

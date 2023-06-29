@@ -3,13 +3,23 @@ import { createContext, useState, ReactNode, useRef } from "react";
 
 export type selectedMenus = {
   size?: string;
-  imgUrl: string;
+  imageUrl: string;
   name: string;
   price: number;
   id?: number;
   temperature?: string;
   count?: number;
 };
+
+// export type selectedMenus = {
+//   imageUrl: string;
+//   name: string;
+//   price: number;
+//   size?: string;
+//   id?: number;
+//   temperature?: string;
+//   count?: number;
+// };
 
 type ModalContextType = {
   modalState: "order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null;
@@ -59,7 +69,7 @@ type ModalProviderProps = {
 };
 
 export interface CartMenus {
-  imgUrl: string;
+  imageUrl: string;
   name: string;
   price: number;
   count: number;
@@ -75,7 +85,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
 
   const [selectedMenu, setSelectedMenu] = useState<selectedMenus | null>(null);
   const [isOpenCart, setIsOpenCart] = useState(false);
-  const [cartMenuList, setCartMenuList] = useState<CartMenus[]>([]); // [{ imgUrl: "", name: "", price: 0 }
+  const [cartMenuList, setCartMenuList] = useState<CartMenus[]>([]); // [{ imageUrl: "", name: "", price: 0 }
   const [orderCount, setOrderCount] = useState(1);
 
   const [isDimOpen, setIsDimOpen] = useState(false);

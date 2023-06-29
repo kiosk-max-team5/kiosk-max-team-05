@@ -4,12 +4,10 @@ import styles from "./MenuArea.module.css";
 import ModalContext, { selectedMenus } from "../../contexts/ModalContext";
 
 export interface Menus {
-  imgUrl: string;
+  imageUrl: string;
   name: string;
   price: number;
 }
-
-
 
 type MenuAreaProps = {
   menus: Menus[];
@@ -53,7 +51,10 @@ function Menu({ menu, index }: MenuProps) {
     setModalState("order");
     setOrderCount(1);
     setIsDimOpen(true);
-    setSelectedMenu(menu);
+    console.log(menu);
+    const updatedMenu = { ...menu, count: 1, size: "", temperature: "" };
+    console.log(updatedMenu);
+    setSelectedMenu(updatedMenu);
   };
 
   // const handleMenuClick = () => {
@@ -69,7 +70,7 @@ function Menu({ menu, index }: MenuProps) {
       // onClick={handleMenuClick}
       onMouseDown={handleMenuMouseDown}
       onMouseUp={handleMenuMouseUp}>
-      <img src={menu.imgUrl} alt="menu" />
+      <img src={menu.imageUrl} alt="menu" />
       <div className={styles.MenuName}>{menu.name}</div>
       <div className={styles.MenuPrice}>{menu.price}원</div>
       {index === 0 && <div className={styles.StarMark}>&#9733;</div>}
@@ -82,7 +83,7 @@ function Menu({ menu, index }: MenuProps) {
 // import ModalContext from "../../contexts/ModalContext";
 
 // export type Menus = {
-//   imgUrl: string;
+//   imageUrl: string;
 //   name: string;
 //   price: number;
 // };
@@ -120,20 +121,20 @@ function Menu({ menu, index }: MenuProps) {
 
 //   function getSelectedMenuInfo(target: HTMLElement): Menus {
 //     const imgElem = target.firstElementChild!;
-//     const imgUrl = imgElem.getAttribute("src")!;
+//     const imageUrl = imgElem.getAttribute("src")!;
 //     const nameElem = imgElem.nextElementSibling!;
 //     const name = nameElem.textContent!;
 //     const priceElem = nameElem.nextElementSibling!;
 //     const priceText = priceElem.textContent!;
 //     const price = parseInt(priceText, 10);
 
-//     return { imgUrl, name, price };
+//     return { imageUrl, name, price };
 //   }
 
 //   return (
 //     <>
 //       <div className={styles.Menu} onClick={handleMenuClick}>
-//         <img src={menu.imgUrl} alt="menu" />
+//         <img src={menu.imageUrl} alt="menu" />
 //         <div className={styles.MenuName}>{menu.name}</div>
 //         <div className={styles.MenuPrice}>{menu.price}</div>
 //         {index === 0 && <div className={styles.StarMark}>&#9733;</div>}

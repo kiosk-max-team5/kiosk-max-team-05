@@ -22,8 +22,7 @@ export function Receipt() {
 
         const data = await response.json();
         const receiptData = data.message;
-        console.log(receiptData);
-        console.log(receiptData.orderedProducts);
+
         setReceiptData(receiptData);
       } catch (error) {
         console.error("Error fetching coffee data:", error);
