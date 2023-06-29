@@ -52,12 +52,13 @@
 
 .MenuName {
   font-size: 25px;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .MenuPrice {
-  font-size: 25px;
-  font-weight: 500;
+  font-size: 23px;
+  font-weight: 400;
+  color: rgb(55, 55, 55);
 }
 
 .fade-enter {
@@ -90,10 +91,21 @@
 
 .StarMark {
   position: absolute;
-  left: -40px;
-  top: -40px;
-  font-size: 100px;
-  color: rgb(255, 245, 65);
+  left: 0;
+  top: 0;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 700;
+
+  transform: translate(-50%, -50%) translate(14px, 25px) rotate(-26deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(255, 71, 71);
+  color: white;
 }
 
 .zoomed {

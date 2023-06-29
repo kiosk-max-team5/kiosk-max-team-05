@@ -4,15 +4,16 @@ import ModalContext from "../../../contexts/ModalContext";
 
 export function CashPayment() {
   const contextValue = useContext(ModalContext)!;
+  const { setPaidOrderIDList, setModalState, cartMenuList, setIsDimOpen, modalState } = contextValue;
   const [paidAmount, setPaidAmount] = useState(0);
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
 
-  const orderAmount = 9000;
-
-  const { setModalState, cartMenuList, setIsDimOpen, modalState } = contextValue;
+  const orderPrice = cartMenuList.reduce((acc, cur) => {
+    return acc + cur.price * cur.count;
+  }, 0);
 
   const handleClickPriceButton = (price: number) => {
-    if (orderAmount < paidAmount + price) {
+    if (orderPrice <= paidAmount + price) {
       setIsPaymentComplete(true);
     }
     setPaidAmount(paidAmount + price);
@@ -21,9 +22,6 @@ export function CashPayment() {
   const handleClickPaymentButton = async () => {
     if (!isPaymentComplete) return;
 
-    const orderPrice = cartMenuList.reduce((acc, cur) => {
-      return acc + cur.price * cur.count;
-    }, 0);
     const postData = {
       payment: "cash",
       totalCost: orderPrice,
@@ -35,7 +33,9 @@ export function CashPayment() {
         temperature: menu.temperature,
       })),
     };
+    console.log("포스트데이타");
     console.log(postData);
+    console.log("포스트데이타제이슨");
     console.log(JSON.stringify(postData));
 
     try {
@@ -52,13 +52,23 @@ export function CashPayment() {
       }
 
       const data = await response.json();
+      console.log("응답받은데이타");
       console.log(data);
+
+      const messageFromResponse = data.message;
+      console.log("응답받은ID");
+      console.log(messageFromResponse);
+
+      setPaidOrderIDList(messageFromResponse);
+
     } catch (error) {
       console.error("Error:", error);
     }
+
     setIsDimOpen(false);
     setModalState("receipt");
   };
+
 
   return modalState === "cashPayment" ? (
     <div className={styles.CashPayment}>
@@ -83,7 +93,7 @@ export function CashPayment() {
       </div>
       <div className={styles.PaymentSection}>
         <div className={styles.AmountContainer}>
-          <div className={styles.Amount}>주문금액: {orderAmount}원</div>
+          <div className={styles.Amount}>주문금액: {orderPrice}원</div>
           <div className={styles.Amount}>결제금액: {paidAmount}원</div>
         </div>
         <PaymentButton onClick={handleClickPaymentButton} isPaymentComplete={isPaymentComplete} />

@@ -4,32 +4,35 @@ import ModalContext from "../../../contexts/ModalContext";
 
 export function Receipt() {
   const initialData = { orderNumber: 0, orderedProducts: [], payments: "", inputCost: 0, totalCost: 0 };
-  const [time, setTime] = useState<number>(555);
+  const [time, setTime] = useState<number>(10);
   const [receiptData, setReceiptData] = useState(initialData);
-  const contextValue = useContext(ModalContext);
-  if (!contextValue) {
-    throw new Error("ModalContext is not provided");
-  }
-  const { modalState } = contextValue;
+  const contextValue = useContext(ModalContext)!;
+
+  const { paidOrderIDList, modalState } = contextValue;
   const isReceiptOpen = modalState === "receipt";
 
   useEffect(() => {
     const fetchReceipt = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/receipt`);
-        // const response = await fetch("/api/v1/products?category=coffee");
-        // const response = await fetch(`http://52.78.214.187:8080/api/v1/products?category=coffee`);
+        const orderId = paidOrderIDList[paidOrderIDList.length - 1];
+
+        const response = await fetch(`/api/v1/orders/${orderId}`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         const data = await response.json();
         const receiptData = data.message;
 
         setReceiptData(receiptData);
       } catch (error) {
-        console.error("Error fetching coffee data:", error);
+        console.error("Error fetching receipt data:", error);
       }
     };
+
     fetchReceipt();
-  }, [setReceiptData]);
+  }, [paidOrderIDList, setReceiptData]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout | number | undefined;
@@ -52,24 +55,6 @@ export function Receipt() {
       return () => clearTimeout(timer);
     }
   }, [isReceiptOpen, time]);
-
-  // const OrderMenuList = [
-  //   { name: "아메리카노", count: 2 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  //   { name: "카페라떼", count: 1 },
-  // ];
 
   return isReceiptOpen && receiptData ? (
     <div className={styles.Receipt}>

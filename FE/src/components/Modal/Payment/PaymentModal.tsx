@@ -10,7 +10,7 @@ interface YNProps {
 export function PaymentModal() {
   const [isClosePaymentModal, setIsClosePaymentModal] = useState(false);
   const contextValue = useContext(ModalContext)!;
-  const { cartMenuList, setIsDimOpen, setModalState, modalState } = contextValue;
+  const { setPaidOrderIDList, cartMenuList, setIsDimOpen, setModalState, modalState } = contextValue;
 
   const handleCloseButtonClick = () => {
     setIsClosePaymentModal(true);
@@ -29,11 +29,11 @@ export function PaymentModal() {
     realCloseFn: handleReallyCloseButtonClick,
   };
 
-  const getRandomNumber = () => {
-    return Math.floor(Math.random() * 4000) + 3000;
-  };
+  // const getRandomNumber = () => {
+  //   return Math.floor(Math.random() * 4000) + 3000;
+  // };
 
-  const paymentTime = getRandomNumber();
+  // const paymentTime = getRandomNumber();
 
   const handleCardPaymentButtonClick = async () => {
     const orderPrice = cartMenuList.reduce((acc, cur) => {
@@ -50,8 +50,12 @@ export function PaymentModal() {
         temperature: menu.temperature,
       })),
     };
+    console.log("POST데이터");
     console.log(postData);
+    console.log("POST제이슨");
     console.log(JSON.stringify(postData));
+
+    setModalState("cardPayment");
 
     try {
       const response = await fetch("/api/v1/orders", {
@@ -67,24 +71,35 @@ export function PaymentModal() {
       }
 
       const data = await response.json();
+      console.log("응답데이터");
       console.log(data);
+
+      const orderIdFromResponse = data.message;
+      console.log("응답ID");
+      console.log(orderIdFromResponse);
+
+      // 주문 ID를 상태로 저장
+      setPaidOrderIDList(orderIdFromResponse);
+
+      setIsDimOpen(false);
+      setModalState("receipt");
     } catch (error) {
       console.error("Error:", error);
     }
 
-    setModalState("cardPayment");
-    setTimeout(() => {
-      setIsDimOpen(false);
-      setModalState("receipt");
-    }, paymentTime);
+    // setModalState("cardPayment");
+    // setTimeout(() => {
+    //   setIsDimOpen(false);
+    //   setModalState("receipt");
+    // }, paymentTime);
   };
 
-  // const handleCardPaymentButtonClick = () => {
+  // const handleCardPaymentButtonClick = async () => {
   //   const orderPrice = cartMenuList.reduce((acc, cur) => {
   //     return acc + cur.price * cur.count;
   //   }, 0);
   //   const postData = {
-  //     payment: "카드",
+  //     payment: "card",
   //     totalCost: orderPrice,
   //     inputCost: orderPrice,
   //     orderProducts: cartMenuList.map((menu) => ({
@@ -95,8 +110,31 @@ export function PaymentModal() {
   //     })),
   //   };
   //   console.log(postData);
-  //   const jsonPostData = JSON.stringify(postData);
-  //   console.log(jsonPostData);
+  //   console.log(JSON.stringify(postData));
+
+  //   try {
+  //     const response = await fetch("/api/v1/orders", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(postData),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! status: ${response.status}`);
+  //     }
+
+  //     const data = await response.json();
+  //     console.log(data);
+
+  //     const messageFromResponse = data.message;
+  //     console.log(messageFromResponse);
+  //     setPaidOrderIDList(messageFromResponse);
+
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
 
   //   setModalState("cardPayment");
   //   setTimeout(() => {
