@@ -44,7 +44,7 @@ class ProductControllerTest {
 
         //then
         result.andExpect(jsonPath("status").isString());
-        result.andExpect(jsonPath("status").value(200));
+        result.andExpect(jsonPath("status").value("P0001"));
         result.andExpect(jsonPath("message[0].id").value(1L));
         result.andExpect(jsonPath("message[1].id").value(2L));
     }
