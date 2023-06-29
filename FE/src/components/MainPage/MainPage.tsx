@@ -107,10 +107,14 @@ export function MainPage() {
           // const response = await fetch(`http://localhost:8080/${endpoint.current[currentCategory]}`);
           // const response = await fetch("/api/v1/products?category=coffee");
           const response = await fetch(`/api/v1/products?category=${endpoint.current[currentCategory]}`);
-          // const response = await fetch(`http://52.78.214.187:8080/api/v1/products?category=coffee`);
 
           const data = await response.json();
+          console.log("원본데이터");
+          console.log(data);
+
           const menuData = data.message;
+          console.log("메세지안에 배열");
+          console.log(menuData);
 
           setMenuData(menuData);
           setAnimationClass("fade");

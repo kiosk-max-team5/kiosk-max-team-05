@@ -1,5 +1,15 @@
-import { createContext, useState, ReactNode } from "react";
-import { Menus } from "../components/MenuArea/MenuArea";
+import { createContext, useState, ReactNode, useRef } from "react";
+// import { Menus } from "../components/MenuArea/MenuArea";
+
+export type selectedMenus = {
+  size?: string;
+  imgUrl: string;
+  name: string;
+  price: number;
+  id?: number;
+  temperature?: string;
+  count?: number;
+};
 
 type ModalContextType = {
   modalState: "order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null;
@@ -7,8 +17,8 @@ type ModalContextType = {
     React.SetStateAction<"order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null>
   >;
 
-  selectedMenu: Menus | null;
-  setSelectedMenu: (menuInfo: Menus | null) => void;
+  selectedMenu: selectedMenus | null;
+  setSelectedMenu: (menuInfo: selectedMenus | null) => void;
   isOpenCart: boolean;
   setIsOpenCart: (isOpen: boolean) => void;
   cartMenuList: CartMenus[];
@@ -21,9 +31,28 @@ type ModalContextType = {
 
   isDimOpen: boolean;
   setIsDimOpen: (isOpen: boolean) => void;
+
+  orderInfo: OrderInfo;
 };
 
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
+type OrderInfo = React.MutableRefObject<{
+  payments: string;
+  orderPrice: number;
+  inputPrice: number;
+  orderProducts: {
+    productId: number;
+    count: number;
+    size: string;
+    temperature: string;
+  }[];
+}>;
+
+export const initOrderInfo = {
+  payments: "",
+  orderPrice: 0,
+  inputPrice: 0,
+  orderProducts: [],
+};
 
 type ModalProviderProps = {
   children: ReactNode;
@@ -36,18 +65,23 @@ export interface CartMenus {
   count: number;
 }
 
+const ModalContext = createContext<ModalContextType | undefined>(undefined);
+
 export function ModalProvider({ children }: ModalProviderProps) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [modalState, setModalState] = useState<"order" | "payment" | "cardPayment" | "cashPayment" | "receipt" | null>(
     null
   );
 
-  const [selectedMenu, setSelectedMenu] = useState<Menus | null>(null);
+  const [selectedMenu, setSelectedMenu] = useState<selectedMenus | null>(null);
   const [isOpenCart, setIsOpenCart] = useState(false);
   const [cartMenuList, setCartMenuList] = useState<CartMenus[]>([]); // [{ imgUrl: "", name: "", price: 0 }
   const [orderCount, setOrderCount] = useState(1);
 
   const [isDimOpen, setIsDimOpen] = useState(false);
+
+  const orderInfo = useRef(initOrderInfo);
+  // const orderInfoList = useRef([]);
 
   const value: ModalContextType = {
     modalState,
@@ -67,6 +101,8 @@ export function ModalProvider({ children }: ModalProviderProps) {
 
     isDimOpen,
     setIsDimOpen,
+
+    orderInfo,
   };
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
