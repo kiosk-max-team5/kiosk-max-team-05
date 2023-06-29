@@ -26,11 +26,12 @@ public class RequestOrder {
     }
 
     public List<OrderDetail> toOrderDetails(final Long orderId) {
-        return orderProducts.stream().map(orderProduct -> getOrderDetail(orderId, orderProduct))
+        return orderProducts.stream()
+                .map(orderProduct -> toOrderDetails(orderId, orderProduct))
                 .collect(Collectors.toList());
     }
 
-    private static OrderDetail getOrderDetail(final Long orderId, final RequestOrderProduct orderProduct) {
+    private static OrderDetail toOrderDetails(final Long orderId, final RequestOrderProduct orderProduct) {
         return OrderDetail.builder()
                 .orderId(orderId)
                 .productId(orderProduct.getProductId())

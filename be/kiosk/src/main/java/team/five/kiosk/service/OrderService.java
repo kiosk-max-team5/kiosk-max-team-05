@@ -20,24 +20,23 @@ public class OrderService {
     private final PaymentService paymentService;
 
     @Transactional
-    public Long order(RequestOrder requestOrder) {
+    public Long order(final RequestOrder requestOrder) {
         // 결제 수단(payment) 조회
         Payment payment = paymentService.findPayment(requestOrder.getPayment());
-
-        // order 저장
         Order order = requestOrder.toOrder(payment.getId());
-        paymentService.process(payment);
 
-        //TODO: 메서드명 수정필요
-        order.complete();
+        // 결제 처리
+        if (paymentService.pay(payment)) {
+            order.completedPayment();
+        }
 
+        // 주문 저장
         Long orderId = orderRepository.createOrder(order);
 
-        // orderDetail 저장
+        // 주문 상세 저장
         List<OrderDetail> orderDetails = requestOrder.toOrderDetails(orderId);
-        orderRepository.createOrderDetail(orderDetails);
+        orderRepository.createAllOrderDetail(orderDetails);
 
         return orderId;
     }
-
 }

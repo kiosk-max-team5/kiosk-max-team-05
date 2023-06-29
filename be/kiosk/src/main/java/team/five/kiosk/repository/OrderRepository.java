@@ -1,6 +1,5 @@
 package team.five.kiosk.repository;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
@@ -41,9 +40,10 @@ public class OrderRepository {
         return keyHolder.getKey().longValue();
     }
 
-    public void createOrderDetail(final List<OrderDetail> orderDetails) {
+    public void createAllOrderDetail(final List<OrderDetail> orderDetails) {
         String sql = "insert into order_detail (product_id, order_id, size, temperature, count) " +
                 " values(:productId, :orderId, :size, :temperature, :count)";
+
         jdbcTemplate.batchUpdate(sql, SqlParameterSourceUtils.createBatch(orderDetails));
     }
 }
