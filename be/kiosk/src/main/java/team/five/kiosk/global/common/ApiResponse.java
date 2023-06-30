@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class ApiResponse<T> {
-
     private final String status;
     private final T message;
 

@@ -6,15 +6,10 @@ import lombok.Getter;
 @Getter
 public class OrderDetail {
     private Long id;
-
     private Long productId;
-
     private Long orderId;
-
     private String size;
-
     private String temperature;
-
     private int count;
 
     @Builder
@@ -25,5 +20,4 @@ public class OrderDetail {
         this.temperature = temperature;
         this.count = count;
     }
-
 }

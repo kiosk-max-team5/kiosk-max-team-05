@@ -8,13 +8,9 @@ import java.time.LocalDateTime;
 @Getter
 public class Order {
     private Long id;
-
     private Long paymentId;
-
     private int totalCost;
-
     private int inputCost;
-
     private LocalDateTime orderAt;
 
     @Builder

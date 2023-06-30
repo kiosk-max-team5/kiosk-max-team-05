@@ -30,7 +30,7 @@ public class CardPaymentManager implements PaymentManager {
             logger.info("결제 지연 시간 초과: " + randomDelayTime);
         }
         long endTime = System.currentTimeMillis();
-        logger.info("결제 시간 : " + (endTime - startTime)/1000);
+        logger.info("결제 시간 : " + (endTime - startTime) / 1000);
 
         return randomDelayTime;
     }

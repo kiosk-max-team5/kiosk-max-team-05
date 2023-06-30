@@ -21,6 +21,7 @@ public class PaymentRepository {
 
     public Optional<Payment> findByName(final String name) {
         String sql = "SELECT * from payment p where p.name = :name";
+
         try (Stream<Payment> result = jdbcTemplate.queryForStream(sql, Map.of("name", name), toRowMapper())) {
             return result.findFirst();
         }
@@ -33,7 +34,4 @@ public class PaymentRepository {
                         rs.getString("name")
                 );
     }
-
-
 }
-

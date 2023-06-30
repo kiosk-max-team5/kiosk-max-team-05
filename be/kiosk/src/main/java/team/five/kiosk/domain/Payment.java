@@ -5,7 +5,6 @@ import lombok.Getter;
 @Getter
 public class Payment {
     private Long id;
-
     private String name;
 
     public Payment(final Long id, final String name) {

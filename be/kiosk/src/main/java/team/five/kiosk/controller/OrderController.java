@@ -22,13 +22,18 @@ public class OrderController {
         final Long orderId = orderService.order(requestOrder);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(StatusCode.ORDER_SUCCESS.getCustomStatus(), orderId));
+                .body(ApiResponse.success(
+                        StatusCode.ORDER_SUCCESS.getCustomStatus(),
+                        orderId));
     }
 
     @GetMapping("/orders/{id}")
     public ResponseEntity<ApiResponse<ResponseReceipt>> getReceipt(@PathVariable Long id) {
         ResponseReceipt receipt = orderService.findOrderById(id);
 
-        return ResponseEntity.ok(ApiResponse.success(StatusCode.RECEIPT_FETCH_SUCCESS.getCustomStatus(), receipt));
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        StatusCode.RECEIPT_FETCH_SUCCESS.getCustomStatus(),
+                        receipt));
     }
 }

@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class Product {
-
     private Long id;
     private Long categoryId;
     private String name;
@@ -18,5 +17,4 @@ public class Product {
         this.price = price;
         this.imageUrl = imageUrl;
     }
-
 }

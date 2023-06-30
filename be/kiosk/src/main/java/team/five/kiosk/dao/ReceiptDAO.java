@@ -2,7 +2,6 @@ package team.five.kiosk.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import team.five.kiosk.dto.ResponseOrderProduct;
 
 import java.util.List;
 

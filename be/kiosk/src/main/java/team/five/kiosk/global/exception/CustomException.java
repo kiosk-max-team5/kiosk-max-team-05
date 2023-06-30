@@ -7,7 +7,5 @@ import team.five.kiosk.global.common.StatusCode;
 @Getter
 @RequiredArgsConstructor
 public class CustomException extends RuntimeException {
-
     private final StatusCode statusCode;
-
 }

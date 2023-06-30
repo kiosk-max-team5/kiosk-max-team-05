@@ -24,6 +24,9 @@ public class ProductController {
     public ResponseEntity<ApiResponse<List<ResponseProduct>>> getProducts(@RequestParam String category) {
         List<ResponseProduct> products = productService.getProducts(category);
 
-        return ResponseEntity.ok(ApiResponse.success(StatusCode.PRODUCT_LIST_FETCH_SUCCESS.getCustomStatus(), products));
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        StatusCode.PRODUCT_LIST_FETCH_SUCCESS.getCustomStatus(),
+                        products));
     }
 }

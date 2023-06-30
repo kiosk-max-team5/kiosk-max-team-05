@@ -13,11 +13,8 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class RequestOrder {
     private String payment;
-
     private int totalCost;
-
     private int inputCost;
-
     private List<RequestOrderProduct> orderProducts;
 
     @Builder

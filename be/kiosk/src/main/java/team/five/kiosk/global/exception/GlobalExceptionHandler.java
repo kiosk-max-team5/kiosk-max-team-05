@@ -21,5 +21,4 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(statusCode.getHttpStatus())
                 .body(ApiResponse.fail(statusCode.getCustomStatus(), statusCode.getMessage()));
     }
-
 }

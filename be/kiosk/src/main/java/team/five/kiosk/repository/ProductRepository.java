@@ -29,7 +29,7 @@ public class ProductRepository {
                 "ORDER BY total_quantity desc";
 
         SqlParameterSource params = new MapSqlParameterSource("name", category);
-        
+
         return jdbcTemplate.query(sql, params,
                 (rs, rowNum) -> new Product(
                         rs.getLong("id"),
@@ -42,6 +42,7 @@ public class ProductRepository {
 
     public boolean isExistCategory(final String category) {
         String sql = "SELECT EXISTS (SELECT 1 FROM category WHERE category.name = :name)";
+
         return Boolean.TRUE.equals(jdbcTemplate.queryForObject(sql, Map.of("name", category), Boolean.class));
     }
 }

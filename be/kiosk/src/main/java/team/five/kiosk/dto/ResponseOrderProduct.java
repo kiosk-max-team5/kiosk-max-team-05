@@ -4,8 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import team.five.kiosk.dao.OrderProductDAO;
 
-import java.util.List;
-
 @Getter
 @Builder
 public class ResponseOrderProduct {
