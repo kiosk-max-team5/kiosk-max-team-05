@@ -188,6 +188,17 @@ __Issue Convention__
 [FE/BE] 작업한 내용
 ```
 
+__Custom Status Code__
+</details>
+<details>
+<summary>Custom Status Code</summary>
+
+![image](https://github.com/kiosk-max-team5/kiosk-max-team-05/assets/57451700/f05ace04-1b7c-4510-ad01-d865ef3a0bd7)
+
+</details>
+
+
+
 ## 링크
 - [칸반보드](https://github.com/orgs/kiosk-max-team5/projects/2)
 - [wiki](https://github.com/kiosk-max-team5/kiosk-max-team-05/wiki) 
