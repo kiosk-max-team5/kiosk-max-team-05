@@ -19,7 +19,7 @@
 
 |                                                                      프론트엔드                                                                       |                                                                     백엔드                                                                      |                                                      백엔드                                                       |                                                        백엔드                                                        |                                                               백엔드                                                               |
 |:------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------:|
-|    <img src = "https://pbs.twimg.com/media/Fw2zWw7aYAAa8z6?format=jpg&name=medium"  width="100" height="100">                                    | <img src = "https://avatars.githubusercontent.com/u/57451700?s=400&u=a77fb45af45050cddaa36813bd5a995c59a07d52&v=4"  width="100" height="100"> |                                                                 <img src = "https://tecoble.techcourse.co.kr/static/ca7db5878f20ac6eedd8d3daf1294bd7/1f3f0/wiring.png"  width="100" height="100">                                               |                     <img src = "https://avatars.githubusercontent.com/u/117690393?v=4"  width="100" height="100">                    |                      <img src = "https://withearth.com/forest/wp-content/uploads/2012/12/bae-bien-u-pine-tree_a.jpg"  width="100" height="100">                   |
+|    <img src = "https://pbs.twimg.com/media/Fw2zWw7aYAAa8z6?format=jpg&name=medium"  width="100" height="100">                                    | <img src = "https://avatars.githubusercontent.com/u/57451700?s=400&u=a77fb45af45050cddaa36813bd5a995c59a07d52&v=4"  width="100" height="100"> |                                                                 <img src = "https://tecoble.techcourse.co.kr/static/ca7db5878f20ac6eedd8d3daf1294bd7/1f3f0/wiring.png"  width="100" height="100">                                               |                     <img src = "https://avatars.githubusercontent.com/u/117690393?v=4"  width="100" height="100">                    |                      <img src = "https://github.com/kiosk-max-team5/kiosk-max-team-05/assets/57451700/123c6c04-d3d1-42e9-9b6e-5e2341b5aeda"  width="100" height="100">                   |
 |                                                      [**박하**](https://github.com/bakhacode)                                                      |                                                   [**시오**](https://github.com/chunghye98)                                                    |                                   [**bean**](https://github.com/tjdqls1200)                                    |       [**Hana**](https://github.com/dokkisan)   |       [**소나무**](https://github.com/daewon-ko) |
 
 ## 🎞 데모
@@ -36,27 +36,15 @@ https://github.com/codesquad-members-2023/kiosk-max/assets/57451700/9bc40430-a03
 
 ### Infrastructure & CI/CD
 
-<img src="https://img.shields.io/badge/AWS%20EC2-FA7343?style=flat&logo=amazonec2&logoColor=white"/> 
-<img src="https://img.shields.io/badge/AWS%20RDS-red?style=flat&logo=amazonrds&logoColor=white"/> 
-<img src="https://img.shields.io/badge/AWS%20S3-569A31?style=flat&logo=amazons3&logoColor=white"/> 
-<img src="https://img.shields.io/badge/nginx-009639?style=flat&logo=nginx&logoColor=white"/>
-<img src="https://img.shields.io/badge/Github%20Actions-2088FF?style=flat&logo=GithubActions&logoColor=white"/>
-<img src="https://img.shields.io/badge/AWS%20Codedeploy-yellowgreen?style=flat"/>
+<img src="https://img.shields.io/badge/AWS%20EC2-FA7343?style=flat&logo=amazonec2&logoColor=white"/> <img src="https://img.shields.io/badge/AWS%20RDS-red?style=flat&logo=amazonrds&logoColor=white"/> <img src="https://img.shields.io/badge/AWS%20S3-569A31?style=flat&logo=amazons3&logoColor=white"/><img src="https://img.shields.io/badge/nginx-009639?style=flat&logo=nginx&logoColor=white"/><img src="https://img.shields.io/badge/Github%20Actions-2088FF?style=flat&logo=GithubActions&logoColor=white"/><img src="https://img.shields.io/badge/AWS%20Codedeploy-yellowgreen?style=flat"/>
 
 
 ### FrontEnd
-<img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=flat"/>
-<img src="https://camo.githubusercontent.com/a91f29fbfde227665b0cd5a447c0b035180e8a285bfef1ec8d91c8ba80fcaa20/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f547970657363726970742d3331373843363f7374796c653d666c6174266c6f676f3d54797065536372697074266c6f676f436f6c6f723d7768697465"/>
-<img src="https://camo.githubusercontent.com/e3883202fdd9cb44fd6a62f35730342d5cd477c3d76a2140aa38aa87eac6b224/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d56697375616c25323053747564696f253230436f64652d3030374143433f7374796c653d666c6174266c6f676f3d56697375616c25323053747564696f253230436f6465266c6f676f436f6c6f723d7768697465"/>
+<img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=flat"/><img src="https://camo.githubusercontent.com/a91f29fbfde227665b0cd5a447c0b035180e8a285bfef1ec8d91c8ba80fcaa20/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f547970657363726970742d3331373843363f7374796c653d666c6174266c6f676f3d54797065536372697074266c6f676f436f6c6f723d7768697465"/><img src="https://camo.githubusercontent.com/e3883202fdd9cb44fd6a62f35730342d5cd477c3d76a2140aa38aa87eac6b224/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d56697375616c25323053747564696f253230436f64652d3030374143433f7374796c653d666c6174266c6f676f3d56697375616c25323053747564696f253230436f6465266c6f676f436f6c6f723d7768697465"/>
 
 
 ### 백엔드
-<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=java&logoColor=white"/> 
-<img src="https://img.shields.io/badge/Gradle-02303A?style=flat&logo=Gradle&logoColor=white"/> 
-<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot&logoColor=white"/> 
-<img src="https://img.shields.io/badge/Spring%20Data%20JDBC-03EF62?style=flat"/> 
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white"/> 
-<img src="https://img.shields.io/badge/-IntelliJ%20IDEA-FF3850?style=flat&logo=IntelliJ%20IDEA&logoColor=white"/>
+<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=java&logoColor=white"/> <img src="https://img.shields.io/badge/Gradle-02303A?style=flat&logo=Gradle&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot&logoColor=white"/> <img src="https://img.shields.io/badge/Spring%20Data%20JDBC-03EF62?style=flat"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white"/> <img src="https://img.shields.io/badge/-IntelliJ%20IDEA-FF3850?style=flat&logo=IntelliJ%20IDEA&logoColor=white"/>
 
 ## ⚙️ Infrastructure & CI/CD pipeline
 
@@ -76,9 +64,10 @@ https://github.com/codesquad-members-2023/kiosk-max/assets/57451700/9bc40430-a03
 <details>
 <summary>[GET] 상품 목록 조회</summary>
 
-```json
-curl --location '/api/v1/products?category=coffee'
+```
+'/api/v1/products?category=coffee'
 {
+  "status": "P0001",
   "message": [
     {
       "id": 1,
@@ -100,37 +89,40 @@ curl --location '/api/v1/products?category=coffee'
 <details>
 <summary>[POST] 상품 주문</summary>
 
-```json
-curl --location '/api/v1/orders' \
---header 'Content-Type: application/json' \
---data '{
-    "payment" : "card",
-    "totalCost" : 9500,
-    "inputCost" : 9500,
-    "orderProducts" : [
-        {
-            "productId" : 1,
-            "count" : 2,
-            "size" : "큰거",
-            "temperature" : "차가운것"
-        },
-        {
-            "productId" : 2,
-            "count" : 4,
-            "size" : "큰거",
-            "temperature" : "차가운것"
+```
+'/api/v1/orders' 
+{
+   "status" : "O0001",
+   "message" : {
+      "payment" : "card",
+      "totalCost" : 9500,
+      "inputCost" : 9500,
+      "orderProducts" : [
+          {
+              "productId" : 1,
+              "count" : 2,
+              "size" : "큰거",
+              "temperature" : "차가운것"
+          },
+          {
+              "productId" : 2,
+              "count" : 4,
+              "size" : "큰거",
+              "temperature" : "차가운것"
         }
     ]
-}'
+  }
+}
 ```
 
 </details>
 <details>
 <summary>[GET] 주문 단건 조회</summary>
 
-```json
-curl --location -g '/api/v1/orders/{id}'
+```
+'/api/v1/orders/{id}'
 {
+  "status" : "O0002"
   "message": {
     "orderNumber": 3,
     "orderedProducts": [
@@ -170,7 +162,7 @@ curl --location -g '/api/v1/orders/{id}'
 
 ### 컨벤션
 __커밋 컨벤션__
-```json
+```
 feat : 새로운 기능 추가
 fix : 버그 수정
 docs : 문서 수정
@@ -182,7 +174,7 @@ chore : 빌드 업무 수정, 패키지 매니저 수정
 - prefix: [#이슈번호]
 
 __Naming Convention__
-```json
+```
  변수 명: camelCase
  메서드 명: camelCase
  DB 컬럼 명: snake_case
@@ -192,7 +184,7 @@ __Naming Convention__
 ```
 
 __Issue Convention__
-```json
+```
 [FE/BE] 작업한 내용
 ```
 
