@@ -1,0 +1,73 @@
+.MenuArea {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 900px;
+  height: 900px;
+  overflow: hidden;
+}
+
+.Menu {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 22px;
+  font-weight: 100;
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgb(213, 213, 213);
+  border-radius: 20px;
+  background-color: white;
+  margin: 25px 25px;
+}
+
+.Menu img {
+  width: 150px;
+  height: 150px;
+}
+
+.MenuName {
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.MenuPrice {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.fade-enter {
+  transform: translateY(150%);
+  opacity: 0;
+  transition: opacity 500ms, transform 500ms;
+}
+
+.fade-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit-active {
+  transform: translateY(150%);
+  opacity: 0;
+  transition: opacity 500ms, transform 500ms;
+}
+
+.StarMark {
+  position: absolute;
+  left: -40px;
+  top: -50px;
+  font-size: 100px;
+  color: rgb(255, 245, 65);
+}
